@@ -4,21 +4,21 @@ Moloco VAN SDK provides session and event tracking for mobile app advertisements
 
 
 ### Prerequisites
-  Moloco VAN SDK 1.1.4 is compatible for devices running Android **API 9** and above. Integrating with Moloco SDK requires a **Product ID** and **Api Key** from Moloco. (Contact [Moloco](www.molocoads.com) if you do not have them)
+Moloco VAN SDK 1.1.4 is compatible for devices running Android **API 9** and above. Integrating with Moloco SDK requires a `Product ID` and `Api Key` from Moloco. (Contact [Moloco](www.molocoads.com) if you do not have them)
 
 ### Installation
 
-  This section contains instructions for installing VAN SDK using Android Studio. Moloco VAN SDK is built with Android Studio 2.2.3 Build #AI-145.3537739. If you’re using a different version and have a problem using VAN SDK, please contact [Moloco](www.molocoads.com).
+This section contains instructions for installing VAN SDK using Android Studio. Moloco VAN SDK is built with Android Studio 2.2.3 Build #AI-145.3537739. If you’re using a different version and have a problem using VAN SDK, please contact [Moloco](www.molocoads.com).
   
-  First, launch your Android studio, and click ‘Start a new Android project’. We will name it as ‘SampleVanApp’. On the “Target Android Devices” screen you can click next to choose the defaults.  On the next screen, let’s choose “Blank Activity with Fragment” for this tutorial. 
+First, launch your Android studio, and click `Start a new Android project`. We will name it as `SampleVanApp`. On the `Target Android Devices` screen you can click next to choose the defaults. On the next screen, let’s choose `Blank Activity with Fragment` for this tutorial. 
   
-  Click Next, then click the Finish button when it is activated. When your project is generated, the project navigator defaults to ‘Android’ format.
+Click Next, then click the Finish button when it is activated. When your project is generated, the project navigator defaults to ‘Android’ format.
   
-  Expand the project tree by clicking the triangle next to SampleVANApp (or whatever you named your project.)  In the directory structure are two important gradle files: 
-    - The first is the build.gradle file located in the project’s root folder.  We’ll refer to this build.gradle file as ‘project level build.gradle’ file. 
-    - The second is the build.gradle file that appears when you expand the app folder. We’ll refer to this file as the ‘application level build.gradle’ file. 
+Expand the project tree by clicking the triangle next to SampleVANApp (or whatever you named your project.)  In the directory structure are two important gradle files: 
+- The first is the build.gradle file located in the project’s root folder. We’ll refer to this build.gradle file as `project level build.gradle` file. 
+- The second is the build.gradle file that appears when you expand the app folder. We’ll refer to this file as the `application level build.gradle` file. 
 
-  Open the ‘project level build.gradle’ file (the lower one in the above image).  Confirm that the code reads as follows:
+Open the ‘project level build.gradle’ file (the lower one in the above image). Confirm that the code reads as follows:
 
 ```properties
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
@@ -40,7 +40,7 @@ allprojects {
 }
 ```
   
-Now, open the ‘application level build.gradle’ file (located in the app folder).  Edit the code so it includes the following repositories and dependencies.
+Now, open the `application level build.gradle` file (located in the app folder). Edit the code so it includes the following repositories and dependencies.
 
 ```java
 apply plugin: 'com.android.application'
@@ -102,9 +102,7 @@ MolocoEntryPoint.sendEvent(Constants.PEventType.P_PURCHASE, dataMap, apiCallback
 ```
 
 ##### SendCustomEvent
-A user can send a P-Custom Event to VAN server by calling `MolocoEntryPoint.sendCustomEvent()`
-May choose any one of the P_CUSTOM_XX (0~16) as a custom event type, along with `customEventName`.
-Event is stored into queue for later dispatch, if entry point is not yet initialized.
+A user can send a P-Custom Event to VAN server by calling `MolocoEntryPoint.sendCustomEvent()`. You may choose any one of the P_CUSTOM_XX (0~16) as a custom event type, along with `customEventName`. Event is stored into queue for later dispatch, if entry point is not yet initialized.
     
 ```java
 MolocoEntryPoint.sendCustomEvent(Constants.PCustomEventType.P_CUSTOM_00, "my_custom_event", dataMap, apiCallback)
