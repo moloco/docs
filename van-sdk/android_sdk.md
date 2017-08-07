@@ -75,7 +75,7 @@ dependencies {
    compile 'com.android.support:support-annotations:25.1.1'
    compile 'com.google.android.gms:play-services-ads:10.0.1'
    compile 'com.android.volley:volley:1.0.0'
-   compile 'com.moloco.sdk:van-sdk:1.2.0@aar'
+   compile 'com.moloco.sdk:van-sdk:2.0.0@aar'
 }
 ```
 
