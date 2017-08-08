@@ -4,11 +4,11 @@ Moloco VAN SDK provides session and event tracking for mobile app advertisements
 
 
 ### Prerequisites
-Moloco VAN SDK 1.2.0 is compatible for devices running Android **API 9** and above. Integrating with Moloco SDK requires a `Product ID` and `Api Key` from Moloco. (Contact [Moloco](www.molocoads.com) if you do not have them)
+Moloco VAN SDK 1.2.0 is compatible for devices running Android **API 9** and above. Integrating with Moloco SDK requires a `Product ID` and `Api Key` from Moloco. (Contact [Moloco](http://www.molocoads.com) if you do not have them)
 
 ### Installation
 
-This section contains instructions for installing VAN SDK using Android Studio. Moloco VAN SDK is built with Android Studio 2.2.3 Build #AI-145.3537739. If you’re using a different version and have a problem using VAN SDK, please contact [Moloco](www.molocoads.com).
+This section contains instructions for installing VAN SDK using Android Studio. Moloco VAN SDK is built with Android Studio 2.2.3 Build #AI-145.3537739. If you’re using a different version and have a problem using VAN SDK, please contact [Moloco](http://www.molocoads.com).
   
 First, launch your Android Studio, and click `Start a new Android project`. We will name it as `SampleVanApp`. On the `Target Android Devices` screen you can click next to choose the defaults. On the next screen, let’s choose `Blank Activity with Fragment` for this tutorial. 
   
@@ -98,14 +98,14 @@ A user can send a pre-defined P-Event to VAN server by calling `MolocoEntryPoint
 Event is stored into queue for later dispatch, if entry point is not yet initialized.
 
 ```java
-MolocoEntryPoint.sendEvent(Constants.PEventType.P_PURCHASE, dataMap, apiCallback)
+MolocoEntryPoint.sendEvent(Constants.EventType.PURCHASE, dataMap, apiCallback)
 ```
 
 ##### SendCustomEvent
-A user can send a P-Custom Event to VAN server by calling `MolocoEntryPoint.sendCustomEvent()`. You may choose any one of the P_CUSTOM_XX (0~16) as a custom event type, along with `customEventName`. Event is stored into queue for later dispatch, if entry point is not yet initialized.
+A user can send a P-Custom Event to VAN server by calling `MolocoEntryPoint.sendCustomEvent()`. You may choose any one of the CUSTOM_XX (0~16) as a custom event type, along with `customEventName`. Event is stored into queue for later dispatch, if entry point is not yet initialized.
     
 ```java
-MolocoEntryPoint.sendCustomEvent(Constants.PCustomEventType.P_CUSTOM_00, "my_custom_event", dataMap, apiCallback)
+MolocoEntryPoint.sendCustomEvent(Constants.CustomEventType.CUSTOM_00, "my_custom_event", dataMap, apiCallback)
 ```
 
 ##### DataMap
