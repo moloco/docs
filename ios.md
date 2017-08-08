@@ -8,7 +8,9 @@ You will need to download the following library to install VAN SDK for iOS:
 
 https://github.com/moloco/VANIosLibrary/archive/master.zip (191KB)
 
-Moloco VAN SDK 2.0.0 is compatible for devices running iOS **8.0** and above (target version). Integrating with Moloco SDK requires a `Product ID` and `Api Key` from Moloco. (Contact [Moloco](www.molocoads.com) if you do not have them)
+Moloco VAN SDK 2.0.0 is compatible for devices running iOS **8.0** and above (target version). To use the Moloco VAN SDK with Object-C or Swift, you must set the deployment target version to at least 8.0.
+
+Integrating with Moloco SDK requires a `Product ID` and `Api Key` from Moloco. (Contact [Moloco](www.molocoads.com) if you do not have them)
 
 ### Installation
 
@@ -21,8 +23,6 @@ IMPORTANT: When submitting your app to the app store, make sure to select approp
 
 
 #### Objective C
-
-To use the Moloco VAN SDK with Object-C the minimum iOS version that Moloco VAN SDK could support is 8.0. You must set the deployment target version to at least 8.0.
 
 First, unzip the library file and copy the MolocoVANSDK.framework bundle into the base directory of your project’s folder using Finder.
 
@@ -68,5 +68,38 @@ For example, you may want to modify the handleVANResponse method to look like:
 }
 ```
 
-
 #### Swift
+
+Unzip the library file and copy the MolocoVANSDK.framework bundle into the base directory of your project’s folder using Finder.
+
+Right-click on your project in Xcode, select `Add Files to (project name)` and add MolocoVANSDK.framework to your project.  Alternatively, you can just drag and drop MolocoVANSDK.framework folder into your project.
+
+In the General tab of project settings page, scroll down to `Link Binary With Libraries` section. If not already listed, use the plus sign button to add the following frameworks and libraries.
+
+- MolocoVANSDK.framework (imported manually)
+- AdSupport.framework (in main list)
+- CoreTelephony.framework (in main list)
+- SystemConfiguration.framework (in main list)
+
+Since MolocoVANSDK framework is written in Objective-C, it is required to insert the bridge header file into the project. You can easily do this by creating a dummy Objective-C (.m) file under app level directory, and clicking on `Create Bridge Header`. After so, delete the dummy file and add the following two lines to the bridging header file (`{project name}-Bridging-Header.h`)from the Navigator.
+
+```objc
+#import <MolocoVANSDK/Constants.h>
+#import <MolocoVANSDK/MolocoEntryPoint.h>
+```
+
+Lastly, your ViewController needs to implement MolocoApiCallback interface.
+
+```objc
+class ViewController: UIViewController, MolocoApiCallback {
+    ...
+    func handleVANResponse(_ response: String!) {
+        // Handle response from VAN server.
+        textView.text = "Response = \(response)"
+        
+        // You can also access device and user information that VAN collected.
+        let userInfo = UserInfo.sharedInstance() as AnyObject?
+        print("Response = \(response)\nIDFA = \(userInfo?.idfa)\nOS = \(userInfo?.os)\nCarrier = \(userInfo?.carrier)\n")
+    }
+}
+```
