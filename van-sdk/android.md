@@ -1,27 +1,33 @@
 
 # Moloco VAN SDK - Android
-Moloco VAN SDK provides session and event tracking for mobile app advertisements.
+Moloco VAN SDK provides SESSION and event tracking for mobile app advertisements.
 
 
-### Prerequisites
-Moloco VAN SDK 1.2.1 is compatible for devices running Android **API 9** and above. Integrating with Moloco SDK requires a `Product ID` and `Api Key` from Moloco. (Contact [Moloco](http://www.molocoads.com) if you do not have them)
+## Prerequisites
+Moloco VAN SDK 2.0.0 is compatible for devices running Android **API 9** and above. Integrating with Moloco SDK requires a `Product ID` and `Api Key` from Moloco. (Contact [Moloco](mailto:support@molocoads.com) if you do not have them)
 
-### Installation
+## Installation
 
-This section contains instructions for installing VAN SDK using Android Studio. Moloco VAN SDK is built with Android Studio 2.2.3 Build #AI-145.3537739. If you’re using a different version and have a problem using VAN SDK, please contact [Moloco](http://www.molocoads.com).
+This section contains instructions for installing VAN SDK using Android Studio. Moloco VAN SDK is built with Android Studio 2.3.3 Build #AI-162.4069837. If you’re using a different version and have a problem using VAN SDK, please contact [Moloco](mailto:support@molocoads.com).
   
-First, launch your Android Studio, and click `Start a new Android project`. We will name it as `SampleVanApp`. On the `Target Android Devices` screen you can click next to choose the defaults. On the next screen, let’s choose `Blank Activity with Fragment` for this tutorial. 
+First, launch your Android Studio, and click `Start a new Android project`. We will name it as `SampleVanApp`. On the `Target Android Devices` screen you can click next to choose the defaults. On the next screen, let’s choose `Empty Activity` for this tutorial.
+
+![alt text](https://storage.googleapis.com/vansdk/android/1.png)
+
+![alt text](https://storage.googleapis.com/vansdk/android/2.png)
   
 Click Next, then click the Finish button when it is activated. When your project is generated, the project navigator defaults to ‘Android’ format.
   
-Expand the project tree by clicking the triangle next to SampleVANApp (or whatever you named your project). In the directory structure are two important gradle files: 
+Expand the project tree by clicking the triangle next to SampleVanApp (or whatever you named your project). In the directory structure are two important gradle files: 
 - The first is the build.gradle file located in the project’s root folder. We’ll refer to this build.gradle file as `project level build.gradle` file. 
-- The second is the build.gradle file that appears when you expand the app folder. We’ll refer to this file as the `application level build.gradle` file. 
+- The second is the build.gradle file that appears when you expand the app folder. We’ll refer to this file as the `application level build.gradle` file.
+
+![alt text](https://storage.googleapis.com/vansdk/android/3.png)
 
 Open the `project level build.gradle` file and confirm that the code reads as follows:
 
 ```properties
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+// Tolevel build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
    repositories {
        jcenter()
@@ -50,7 +56,7 @@ android {
    buildToolsVersion "25.0.0"
 
    defaultConfig {
-       applicationId "com.moloco.vansample"
+       applicationId "com.moloco.sampleVanApp"
        minSdkVersion 9
        targetSdkVersion 25
        versionCode 1
@@ -75,40 +81,44 @@ dependencies {
    compile 'com.android.support:support-annotations:25.1.1'
    compile 'com.google.android.gms:play-services-ads:10.0.1'
    compile 'com.android.volley:volley:1.0.0'
-   compile 'com.moloco.sdk:van-sdk:1.2.1'
+   compile 'com.moloco.sdk:van-sdk:2.0.0'
 }
 ```
 
+Now, you are ready to integrate your App with MolocoVAN.
+
+![alt text](https://storage.googleapis.com/vansdk/android/4.png)
+
 ### Integration
-Integrating Moloco VAN SDK requires initializing `MolocoEntryPoint`. Initialization requires a product ID and an API Key provided by Moloco. Initialize MolocoEntryPoint with context by calling `MolocoEntryPoint.init()` on very first activity.
+Integrating Moloco VAN SDK requires initializing `MolocoVAN`. Initialization requires a product ID and an API Key provided by Moloco. Initialize MolocoVAN with context by calling `MolocoVAN.init()` on very first activity.
 
 ```java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    MolocoEntryPoint.init(this, "your_product_id", "moloco_api_key");
+    MolocoVAN.init(this, "your_product_id", "moloco_api_key");
 }
 ```
 
-##### Session
-Once MolocoEntryPoint is initialized, `Session` event will automatically be sent to Moloco VAN server.
+### SESSION
+Once MolocoVAN is initialized, `SESSION` event will automatically be sent to Moloco VAN server.
 
-##### SendEvent
-A user can send a pre-defined P-Event to VAN server by calling `MolocoEntryPoint.sendEvent()`
-Event is stored into queue for later dispatch, if entry point is not yet initialized.
+### SendEvent
+A user can send a pre-defined Event to VAN server by calling `MolocoVAN.sendEvent()`
+Event is stored into queue for later dispatch, if MolocoVAN is not yet initialized.
 
 ```java
-MolocoEntryPoint.sendEvent(Constants.EventType.PURCHASE, dataMap, apiCallback)
+MolocoVAN.sendEvent(Constants.EventType.PURCHASE, dataMap, apiCallback)
 ```
 
-##### SendCustomEvent
-A user can send a P-Custom Event to VAN server by calling `MolocoEntryPoint.sendCustomEvent()`. You may choose any one of the CUSTOM_XX (0~16) as a custom event type, along with `customEventName`. Event is stored into queue for later dispatch, if entry point is not yet initialized.
+### SendCustomEvent
+A user can send a Custom Event to VAN server by calling `MolocoVAN.sendCustomEvent()`. You may choose any one of the CUSTOM_XX (0~16) as a custom event type, along with `customEventName`. Event is stored into queue for later dispatch, if MolocoVAN is not yet initialized.
     
 ```java
-MolocoEntryPoint.sendCustomEvent(Constants.CustomEventType.CUSTOM_00, "my_custom_event", dataMap, apiCallback)
+MolocoVAN.sendCustomEvent(Constants.CustomEventType.CUSTOM_00, "my_custom_event", dataMap, apiCallback)
 ```
 
-##### DataMap
+### DataMap
 User may send additional information using a `Map<String, Object>` that can be used for user tracking and targetting.
 
 ```java
@@ -116,14 +126,21 @@ Map<String, String> dataMap = new HashMap<String, String>();
 dataMap.put("gender", "male")
 ```
 
-##### ApiCallback
-ApiCallback is an interface for handling http responses. Custom ApiCallback must override `handleResponse(E response)`. Response is a string representation of error (empty string if no error)
+### ApiCallback
+ApiCallback is an interface for handling http responses. Custom ApiCallback must override `onSuccessResponse(String response)` and `onFailureResponse(String response)`. Response is a string representation of error (empty string if no error)
 
 ```java
-new ApiCallback<String>() {
+new ApiCallback() {
     @Override
-    public void handleResponse(String response) {
-        Log.d("com.moloco.vansample", String.format("Error : %s", response));
+    public void onSuccessResponse(String response) {
+        Log.d("com.moloco.sampleVanApp", String.format("Success with response : %s", response));
+    }
+
+    @Override
+    public void onFailureResponse(String response) {
+        Log.d("com.moloco.sampleVanApp", String.format("Error with response : %s", response));
     }
 }
 ```
+
+If there is any question regarding with SDK integration, please contatct `support@molocoads.com`.
