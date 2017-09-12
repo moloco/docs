@@ -113,7 +113,7 @@ MolocoVAN.sendEvent(Constants.EventType.PURCHASE, dataMap, apiCallback)
 
 ### EventTypes
 
-Following list of EventTypes are pre-defined under `Constants.java` file, to be used for `MolocoVANsendEvent()`.
+Following list of event types are pre-defined under `EventType` enum in `Constants.java` file, to be used for `MolocoVANsendEvent()`.
 
 - PURCHASE
 - REGISTER
@@ -135,7 +135,7 @@ Following list of EventTypes are pre-defined under `Constants.java` file, to be 
 - COMPLETE_TUTORIAL
 
 ### SendCustomEvent
-A user can send a **Custom Event** to VAN server by calling `MolocoVAN.sendCustomEvent()`. You may choose any one of the CUSTOM_XX (CUSTOM_00 ~ CUSTOM_15) as a custom event type, along with `customEventName`. If the MolocoVAN class is not yet initialized, the **Custom Event** is queued for later dispatch.
+A user can send a **Custom Event** to VAN server by calling `MolocoVAN.sendCustomEvent()`. You may choose any one of the CUSTOM_XX (CUSTOM_00 ~ CUSTOM_15) as a `CustomEventType`, along with `CustomEventName`, `DataMap`, and `ApiCallback`. If the MolocoVAN class is not yet initialized, the **Custom Event** is queued for later dispatch.
     
 ```java
 MolocoVAN.sendCustomEvent(Constants.CustomEventType.CUSTOM_00, "my_custom_event", dataMap, apiCallback)
@@ -166,6 +166,6 @@ new ApiCallback() {
 }
 ```
 
-Now you are ready to track your in-app events through **Moloco VAN**!
+Now you are ready use **Moloco VAN** for Android devices!
 
-If there is any question regarding with SDK integration, please contact `support@molocoads.com`.
+If there is any question regarding with Moloco VAN Android SDK integration, please contact `support@molocoads.com`.
