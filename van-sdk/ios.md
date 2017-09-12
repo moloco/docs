@@ -1,6 +1,6 @@
 
 # Moloco VAN SDK - iOS
-Moloco VAN SDK provides session and event tracking for mobile app advertisements.
+Moloco VAN SDK provides `session` and `event tracking` to facilitate advertising for mobile app publishers.
 
 ## Prerequisites
 You will need to download the following library to install VAN SDK for iOS:
@@ -9,14 +9,14 @@ https://github.com/moloco/VANIosLibrary/archive/2.0.zip (191KB)
 
 Moloco VAN SDK 2.0.0 is compatible for devices running iOS **8.0** and above (target version). To use the Moloco VAN SDK with Object-C or Swift, you must set the deployment target version to at least 8.0.
 
-Integrating with Moloco SDK requires a `Product ID` and `Api Key` from Moloco. (Contact [Moloco](mailto:support@molocoads.com) if you do not have them)
+Integrating with Moloco SDK requires a `Product ID` and `Api Key` from Moloco. Contact [Moloco](mailto:support@molocoads.com) if you do not have these credentials.
 
 ## Installation
 
-This section contains instructions for installing VAN SDK using Xcode. Moloco VAN SDK is built and tested with Xcode Version `8.3.3 (8E3004b)`. If you’re using a different version and have a problem using VAN SDK, please contact [Moloco](mailto:support@molocoads.com).
+This section contains instructions for installing Moloco VAN SDK using Xcode. Moloco VAN SDK is built and tested with Xcode Version `8.3.3 (8E3004b)`. If you’re using a different version and have a problem using VAN SDK, please contact [Moloco](mailto:support@molocoads.com).
 
 
-Please follow appropriate sections below according to your choice of language (Objective-C and Swift).
+Please follow appropriate sections below according to your choice of language (Objective-C or Swift).
 
 > IMPORTANT: When submitting your app to the app store, make sure to select appropriate IDFA permissions: `Attribute this app installation to a previously served advertisement`.
 
@@ -42,7 +42,7 @@ Click the drop-down titled `Link Binary With Libraries`. If not already listed, 
 
 ![alt text](https://storage.googleapis.com/vansdk/ios/objc/4.png)
 
-In the header file which you want to call Moloco VAN API, add the following import:
+In the header file in which you want to call Moloco VAN API, add the following import:
 
 ```objc
 #import <MolocoVANSDK/MolocoVAN.h>
@@ -55,7 +55,7 @@ Follow the `MolocoApiCallback` protocol.  For example, in the header file of you
 
 ![alt text](https://storage.googleapis.com/vansdk/ios/objc/5.png)
 
-Integrating Moloco VAN SDK requires initializing `MolocoVAN`. Initialization requires a product ID and an API Key provided by Moloco. Initialize MolocoVAN with context by calling `MolocoVAN.init()` on very first activity.
+Integrating Moloco VAN SDK requires initializing `MolocoVAN`. Initialization requires a product ID and an API Key provided by Moloco. Initialize `MolocoVAN` with these values by calling `[MolocoVAN setProductId(ProductId, Api-Key)]` on the app's very first activity.
 
 ```objc
 - (void)viewDidLoad {
@@ -98,7 +98,7 @@ Right-click on your project in Xcode, select `Add Files to (project name)` and a
 ![alt text](https://storage.googleapis.com/vansdk/ios/swift/2.png)
 ![alt text](https://storage.googleapis.com/vansdk/ios/swift/3.png)
 
-In the General tab of project settings page, scroll down to `Link Binary With Libraries` section. If not already listed, use the plus sign button to add the following frameworks and libraries.
+In the **General** tab of project settings page, scroll down to `Link Binary With Libraries` section. If not already listed, use the plus sign button to add the following frameworks and libraries.
 
 - `MolocoVANSDK.framework` (imported manually)
 - `AdSupport.framework` (in main list)
@@ -107,7 +107,7 @@ In the General tab of project settings page, scroll down to `Link Binary With Li
 
 ![alt text](https://storage.googleapis.com/vansdk/ios/swift/4.png)
 
-Since MolocoVANSDK framework is written in Objective-C, it is required to insert the bridge header file into the project. 
+Since the Moloco VAN SDK framework is written in Objective-C, it is required to insert the bridge header file into the project. 
 
 You can easily do this by creating a header file called `ProjectName-Bridging-Header.h` file under app level directory, where `ProjectName` is the name of your app's project name. Then, you can edit your header file to look as below.
 
@@ -135,7 +135,7 @@ You can easily do this by creating a header file called `ProjectName-Bridging-He
 ![alt text](https://storage.googleapis.com/vansdk/ios/swift/6.png)
 ![alt text](https://storage.googleapis.com/vansdk/ios/swift/7.png)
 
-In order to link these header files, you need to do the following instructions:
+In order to link these header files, you need to follow these instructions:
 
 1. Modify framework search path
 - Select `Build Settings` tab in your project, look for `Header Search Paths` fields, and add `$(PROJECT_DIR)/MolocoVANSDK.framework/Headers`.
@@ -147,7 +147,7 @@ In order to link these header files, you need to do the following instructions:
 
 ![alt text](https://storage.googleapis.com/vansdk/ios/swift/9.png)
 
-Lastly, your ViewController needs to implement MolocoApiCallback interface, as well as MolocoVAN initialization.
+Finally, your `ViewController` needs to implement `MolocoApiCallback` interface, as well as `MolocoVAN` initialization.
 
 ```swift
 class ViewController: UIViewController, MolocoApiCallback {
@@ -177,11 +177,10 @@ class ViewController: UIViewController, MolocoApiCallback {
 
 
 #### Session
-Once MolocoVAN is initialized, `Session` event will automatically be sent to Moloco VAN server.
+Once `MolocoVAN` is initialized, a `SESSION` event will automatically be sent to the Moloco VAN server.
 
 #### SendEvent
-A user can send a pre-defined vent to VAN server by calling `MolocoVAN.sendEvent()`
-Event is stored into queue for later dispatch, if entry point is not yet initialized.
+A user can send a pre-defined event to the Moloco VAN server by calling `MolocoVAN.sendEvent()` with an `EventType`, `DataMap` and `Delegate` (MolocoApiCallback).
 
 ```objc
 // ObjC: Send Event
@@ -193,11 +192,34 @@ Event is stored into queue for later dispatch, if entry point is not yet initial
 MolocoVAN.send(PURCHASE, dataMap: dict, delegate: self);
 ```
 
+### EventTypes
+
+Following list of event types are pre-defined under `EventType` enum in `Constants.h` header file, to be used for `MolocoVANsendEvent()`.
+
+- PURCHASE
+- REGISTER
+- OPEN_COMMUNITY
+- INVITE
+- CALL
+- DELIVERY
+- AUTHORIZE
+- ADD_TO_CART
+- ADD_TO_WISHLIST
+- VIEW_CONTENT
+- LEVEL_UP
+- LOGIN
+- RATE
+- RESERVE
+- SEARCH
+- SELL
+- SHARE
+- COMPLETE_TUTORIAL
+
 #### SendCustomEvent
-A user can send a Custom Event to VAN server by calling `MolocoVAN.sendCustomEvent()`. You may choose any one of the CUSTOM_XX (0~16) as a custom event type, along with `customEventName`. Event is stored into queue for later dispatch, if entry point is not yet initialized.
+A user can send a **Custom Event** to VAN server by calling `MolocoVAN.sendCustomEvent()`. You may choose any one of the CUSTOM_XX (CUSTOM_00 ~ CUSTOM_15) as a `CustomEventType`, along with `CustomEventName`, `DataMap` and `Delegate` (MolocoApiCallback).
     
 ```objc
-// Objc - Send Custom Event
+// ObjC - Send Custom Event
 [MolocoVAN sendCustomEvent:CUSTOM_00 customEventName:@"my_custom_ios_event" dataMap:dict delegate:self];
 ```
 
@@ -207,7 +229,7 @@ MolocoVAN.send(CUSTOM_00, customEventName: "my_custom_event", dataMap: dict, del
 ```
 
 #### DataMap
-User may send additional information using a `NSDictionary *` that can be used for user tracking and targetting.
+Users may send additional information using an `NSDictionary *` that can be used for user tracking and targeting.
 
 ```objc
 // ObjC
@@ -221,4 +243,6 @@ NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 var dict:[String:String] = ["Moloco":"Van"];
 ```
 
-If there is any question regarding with SDK integration, please contatct `support@molocoads.com`.
+Now you are ready use **Moloco VAN** for iOS devices!
+
+If there is any question regarding with Moloco VAN iOS SDK integration, please contact `support@molocoads.com`.
