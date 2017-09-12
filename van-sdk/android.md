@@ -10,7 +10,7 @@ Moloco VAN SDK 2.0.0 is compatible for devices running Android **API 9** and abo
 
 This section contains instructions for installing VAN SDK using Android Studio. Moloco VAN SDK is built with Android Studio 2.3.3 Build #AI-162.4069837. If you’re using a different version and have a problem using VAN SDK, please contact [Moloco](mailto:support@molocoads.com).
   
-First, launch your Android Studio, and click `Start a new Android project`. We will name it as `SampleVanApp`. On the `Target Android Devices` screen you can click **Next** to choose the defaults. On the next screen, let’s choose `Empty Activity` for this tutorial.
+First, launch your Android Studio, and click `Start a new Android project`. We will name it as `VanSampleApp`. On the `Target Android Devices` screen you can click **Next** to choose the defaults. On the next screen, let’s choose `Empty Activity` for this tutorial.
 
 ![alt text](https://storage.googleapis.com/vansdk/android/1.png)
 
@@ -18,7 +18,7 @@ First, launch your Android Studio, and click `Start a new Android project`. We w
   
 Click Next, then click the **Finish** button when it is activated. When your project is generated, the project navigator defaults to ‘Android’ format.
   
-Expand the project tree by clicking the triangle next to SampleVanApp (or whatever you named your project). In the directory structure are two important gradle files: 
+Expand the project tree by clicking the triangle next to VanSampleApp (or whatever you named your project). In the directory structure are two important gradle files: 
 - The first is the build.gradle file located in the project’s root folder. We’ll refer to this build.gradle file as `project level build.gradle` file. 
 - The second is the build.gradle file that appears when you expand the app folder. We’ll refer to this file as the `application level build.gradle` file.
 
@@ -27,7 +27,7 @@ Expand the project tree by clicking the triangle next to SampleVanApp (or whatev
 Open the `project level build.gradle` file and confirm that the code reads as follows:
 
 ```properties
-// Tolevel build file where you can add configuration options common to all sub-projects/modules.
+// Top level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
    repositories {
        jcenter()
@@ -56,7 +56,7 @@ android {
    buildToolsVersion "25.0.0"
 
    defaultConfig {
-       applicationId "com.moloco.sampleVanApp"
+       applicationId "com.moloco.VanSampleApp"
        minSdkVersion 9
        targetSdkVersion 25
        versionCode 1
@@ -104,15 +104,38 @@ protected void onCreate(Bundle savedInstanceState) {
 Once Moloco VAN is initialized, a `SESSION` event will automatically be sent to Moloco VAN server.
 
 ### SendEvent
-A user can send a pre-defined **Event** to the Moloco VAN server by calling `MolocoVAN.sendEvent()`.
+A user can send a pre-defined **EventTypes** to the Moloco VAN server by calling `MolocoVAN.sendEvent()`.
 If the MolocoVAN class is not yet initialized then this event will be queued for later dispatch, 
 
 ```java
 MolocoVAN.sendEvent(Constants.EventType.PURCHASE, dataMap, apiCallback)
 ```
 
+### EventTypes
+
+Following list of EventTypes are pre-defined under `Constants.java` file, to be used for `MolocoVANsendEvent()`.
+
+- PURCHASE
+- REGISTER
+- OPEN_COMMUNITY
+- INVITE
+- CALL
+- DELIVERY
+- AUTHORIZE
+- ADD_TO_CART
+- ADD_TO_WISHLIST
+- VIEW_CONTENT
+- LEVEL_UP
+- LOGIN
+- RATE
+- RESERVE
+- SEARCH
+- SELL
+- SHARE
+- COMPLETE_TUTORIAL
+
 ### SendCustomEvent
-A user can send a **Custom Event** to VAN server by calling `MolocoVAN.sendCustomEvent()`. You may choose any one of the CUSTOM_XX (0~16) as a custom event type, along with `customEventName`. If the MolocoVAN class is not yet initialized, the **Custom Event** is queued for later dispatch.
+A user can send a **Custom Event** to VAN server by calling `MolocoVAN.sendCustomEvent()`. You may choose any one of the CUSTOM_XX (CUSTOM_00 ~ CUSTOM_15) as a custom event type, along with `customEventName`. If the MolocoVAN class is not yet initialized, the **Custom Event** is queued for later dispatch.
     
 ```java
 MolocoVAN.sendCustomEvent(Constants.CustomEventType.CUSTOM_00, "my_custom_event", dataMap, apiCallback)
@@ -133,14 +156,16 @@ dataMap.put("gender", "male")
 new ApiCallback() {
     @Override
     public void onSuccessResponse(String response) {
-        Log.d("com.moloco.sampleVanApp", String.format("Success with response : %s", response));
+        Log.d("com.moloco.VanSampleApp", String.format("Success with response : %s", response));
     }
 
     @Override
     public void onFailureResponse(String response) {
-        Log.d("com.moloco.sampleVanApp", String.format("Error with response : %s", response));
+        Log.d("com.moloco.VanSampleApp", String.format("Error with response : %s", response));
     }
 }
 ```
+
+Now you are ready to track your in-app events through **Moloco VAN**!
 
 If there is any question regarding with SDK integration, please contact `support@molocoads.com`.
