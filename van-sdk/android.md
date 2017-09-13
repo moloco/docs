@@ -127,7 +127,7 @@ Following list of event types are pre-defined under `EventType` enum in `Constan
 - COMPLETE_TUTORIAL
 
 ### DataMap
-Users may send additional information using a `Map<String, Object>` that can be used for user tracking and targeting. DataMap is used as an argument for both `MolocoVAN.sendEvent()` and `MolocoVAN.sendCustomEvent()` functions as descripbed later below.
+Users may send additional information using a `Map<String, Object>` that can be used for user tracking and targeting. DataMap is used as an argument for both `MolocoVAN.sendEvent()` and `MolocoVAN.sendCustomEvent()` for providing more information about an event.
 
 ```java
 Map<String, String> dataMap = new HashMap<String, String>();
