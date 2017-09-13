@@ -179,6 +179,28 @@ class ViewController: UIViewController, MolocoApiCallback {
 #### Session
 Once `MolocoVAN` is initialized, a `SESSION` event will automatically be sent to the Moloco VAN server.
 
+### EventType
+Following list of event types are pre-defined under `EventType` enum in `Constants.h` header file, to be used for `MolocoVAN.sendEvent()`.
+
+- PURCHASE
+- REGISTER
+- OPEN_COMMUNITY
+- INVITE
+- CALL
+- DELIVERY
+- AUTHORIZE
+- ADD_TO_CART
+- ADD_TO_WISHLIST
+- VIEW_CONTENT
+- LEVEL_UP
+- LOGIN
+- RATE
+- RESERVE
+- SEARCH
+- SELL
+- SHARE
+- COMPLETE_TUTORIAL
+
 #### DataMap
 Users may send additional information using an `NSDictionary *` that can be used for user tracking and targeting. DataMap is used as an argument for both `MolocoVAN.sendEvent()` and `MolocoVAN.sendCustomEvent()` for providing more information about an event.
 
@@ -206,28 +228,6 @@ A user can send a pre-defined event to the Moloco VAN server by calling `MolocoV
 // Swift: Send Event
 MolocoVAN.send(PURCHASE, dataMap: dict, delegate: self);
 ```
-
-### EventType
-Following list of event types are pre-defined under `EventType` enum in `Constants.h` header file, to be used for `MolocoVAN.sendEvent()`.
-
-- PURCHASE
-- REGISTER
-- OPEN_COMMUNITY
-- INVITE
-- CALL
-- DELIVERY
-- AUTHORIZE
-- ADD_TO_CART
-- ADD_TO_WISHLIST
-- VIEW_CONTENT
-- LEVEL_UP
-- LOGIN
-- RATE
-- RESERVE
-- SEARCH
-- SELL
-- SHARE
-- COMPLETE_TUTORIAL
 
 #### SendCustomEvent
 A user can send a **Custom Event** to VAN server by calling `MolocoVAN.sendCustomEvent()`. You may choose any one of the CUSTOM_XX (CUSTOM_00 ~ CUSTOM_15) as a `CustomEventType`, along with `CustomEventName`, `DataMap` and `Delegate` (MolocoApiCallback).
