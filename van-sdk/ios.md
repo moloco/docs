@@ -1,6 +1,6 @@
 
 # Moloco VAN SDK - iOS
-Moloco VAN SDK provides `session` and `event tracking` to facilitate advertising for mobile app publishers.
+Moloco VAN SDK provides session and event tracking for mobile applications to facilitate advertising for app publishers.
 
 ## Prerequisites
 You will need to download the following library to install VAN SDK for iOS:
@@ -114,17 +114,17 @@ You can easily do this by creating a header file called `ProjectName-Bridging-He
 
 ```objc
 //
-//  adsdisplay-Bridging-Header.h
-//  adsdisplay
+//  VanSampleAppSwift-Bridging-Header.h
+//  VanSampleAppSwift
 //
 //  Copyright © 2017 Molocoads. All rights reserved.
 //
 
-#ifndef adsdisplay_Bridging_Header_h
-#define adsdisplay_Bridging_Header_h
+#ifndef VanSampleAppSwift_Bridging_Header_h
+#define VanSampleAppSwift_Bridging_Header_h
 
 
-#endif /* adsdisplay_Bridging_Header_h */
+#endif /* VanSampleAppSwift_Bridging_Header_h */
 
 #import "MolocoVAN.h"
 #import "Constants.h"
@@ -179,6 +179,21 @@ class ViewController: UIViewController, MolocoApiCallback {
 #### Session
 Once `MolocoVAN` is initialized, a `SESSION` event will automatically be sent to the Moloco VAN server.
 
+#### DataMap
+Users may send additional information using an `NSDictionary *` that can be used for user tracking and targeting. DataMap is used as an argument for both `MolocoVAN.sendEvent()` and `MolocoVAN.sendCustomEvent()` for providing more information about an event.
+
+```objc
+// ObjC
+NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+[dict setValue:@"OS" forKey:@"iOS"];
+[dict setValue:[NSNumber numberWithInt:31] forKey:@"age"];
+```
+
+```swift
+// Swift
+var dict:[String:String] = ["Moloco":"Van"];
+```
+
 #### SendEvent
 A user can send a pre-defined event to the Moloco VAN server by calling `MolocoVAN.sendEvent()` with an `EventType`, `DataMap` and `Delegate` (MolocoApiCallback).
 
@@ -192,9 +207,8 @@ A user can send a pre-defined event to the Moloco VAN server by calling `MolocoV
 MolocoVAN.send(PURCHASE, dataMap: dict, delegate: self);
 ```
 
-### EventTypes
-
-Following list of event types are pre-defined under `EventType` enum in `Constants.h` header file, to be used for `MolocoVANsendEvent()`.
+### EventType
+Following list of event types are pre-defined under `EventType` enum in `Constants.h` header file, to be used for `MolocoVAN.sendEvent()`.
 
 - PURCHASE
 - REGISTER
@@ -228,21 +242,8 @@ A user can send a **Custom Event** to VAN server by calling `MolocoVAN.sendCusto
 MolocoVAN.send(CUSTOM_00, customEventName: "my_custom_event", dataMap: dict, delegate: self);
 ```
 
-#### DataMap
-Users may send additional information using an `NSDictionary *` that can be used for user tracking and targeting.
-
-```objc
-// ObjC
-NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-[dict setValue:@"OS" forKey:@"iOS"];
-[dict setValue:[NSNumber numberWithInt:31] forKey:@"age"];
-```
-
-```swift
-// Swift
-var dict:[String:String] = ["Moloco":"Van"];
-```
-
 Now you are ready use **Moloco VAN** for iOS devices!
 
-If there is any question regarding with Moloco VAN iOS SDK integration, please contact `support@molocoads.com`.
+Once you complete integration, please work with your Moloco contact to verify receipt of the session and other events from VAN server.
+
+If there is any question regarding with Moloco VAN iOS SDK integration, please contact [Moloco](mailto:support@molocoads.com).
