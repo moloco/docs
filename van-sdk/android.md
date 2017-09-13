@@ -1,10 +1,10 @@
 
 # Moloco VAN SDK - Android
-Moloco VAN SDK provides `session` and `event tracking` to facilitate advertising for mobile app publishers.
+Moloco VAN SDK provides session and event tracking for mobile applications to facilitate advertising for app publishers.
 
 
 ## Prerequisites
-Moloco VAN SDK 2.0.0 is compatible for devices running Android **API 9** and above. Integrating with Moloco SDK requires a `Product ID` and `Api Key` from Moloco. Contact [Moloco](mailto:support@molocoads.com if you are missing either value.
+Moloco VAN SDK 2.0.0 is compatible for devices running Android **API 9** and above. Integrating with Moloco SDK requires a `Product ID` and `Api Key` from Moloco. Contact [Moloco](mailto:support@molocoads.com) if you are missing either value.
 
 ## Installation
 
@@ -103,17 +103,9 @@ protected void onCreate(Bundle savedInstanceState) {
 ### SESSION
 Once Moloco VAN is initialized, a `SESSION` event will automatically be sent to Moloco VAN server.
 
-### SendEvent
-A user can send a pre-defined **EventTypes** to the Moloco VAN server by calling `MolocoVAN.sendEvent()`.
-If the MolocoVAN class is not yet initialized then this event will be queued for later dispatch, 
+### EventType
 
-```java
-MolocoVAN.sendEvent(Constants.EventType.PURCHASE, dataMap, apiCallback)
-```
-
-### EventTypes
-
-Following list of event types are pre-defined under `EventType` enum in `Constants.java` file, to be used for `MolocoVANsendEvent()`.
+Following list of event types are pre-defined under `EventType` enum in `Constants.java` file, to be used for `MolocoVAN.sendEvent()`.
 
 - PURCHASE
 - REGISTER
@@ -134,15 +126,8 @@ Following list of event types are pre-defined under `EventType` enum in `Constan
 - SHARE
 - COMPLETE_TUTORIAL
 
-### SendCustomEvent
-A user can send a **Custom Event** to VAN server by calling `MolocoVAN.sendCustomEvent()`. You may choose any one of the CUSTOM_XX (CUSTOM_00 ~ CUSTOM_15) as a `CustomEventType`, along with `CustomEventName`, `DataMap`, and `ApiCallback`. If the MolocoVAN class is not yet initialized, the **Custom Event** is queued for later dispatch.
-    
-```java
-MolocoVAN.sendCustomEvent(Constants.CustomEventType.CUSTOM_00, "my_custom_event", dataMap, apiCallback)
-```
-
 ### DataMap
-Users may send additional information using a `Map<String, Object>` that can be used for user tracking and targeting.
+Users may send additional information using a `Map<String, Object>` that can be used for user tracking and targeting. DataMap is used as an argument for both `MolocoVAN.sendEvent()` and `MolocoVAN.sendCustomEvent()` functions as descripbed later below.
 
 ```java
 Map<String, String> dataMap = new HashMap<String, String>();
@@ -166,6 +151,23 @@ new ApiCallback() {
 }
 ```
 
-Now you are ready use **Moloco VAN** for Android devices!
+### SendEvent
+A user can send a pre-defined **EventType** to the Moloco VAN server by calling `MolocoVAN.sendEvent()`.
+If the MolocoVAN class is not yet initialized then this event will be queued for later dispatch, 
 
-If there is any question regarding with Moloco VAN Android SDK integration, please contact `support@molocoads.com`.
+```java
+MolocoVAN.sendEvent(Constants.EventType.PURCHASE, dataMap, apiCallback)
+```
+
+### SendCustomEvent
+A user can send a **Custom Event** to VAN server by calling `MolocoVAN.sendCustomEvent()`. You may choose any one of the CUSTOM_XX (CUSTOM_00 ~ CUSTOM_15) as a `CustomEventType`, along with `CustomEventName`, `DataMap`, and `ApiCallback`. If the MolocoVAN class is not yet initialized, the **Custom Event** is queued for later dispatch.
+    
+```java
+MolocoVAN.sendCustomEvent(Constants.CustomEventType.CUSTOM_00, "my_custom_event", dataMap, apiCallback)
+```
+
+Now you are ready use **Moloco VAN** for Android devices! 
+
+Once you complete integration, please work with your Moloco contact to verify receipt of the session and other events from VAN server.
+
+If there is any question regarding with Moloco VAN Android SDK integration, please contact [Moloco](mailto:support@molocoads.com).
