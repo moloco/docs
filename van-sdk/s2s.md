@@ -195,18 +195,18 @@ The following procedure guides the encoding of a finalized string value.
   - ip_address, device_type, connection_type, carrier, country_code, language, os_version, app_version, sdk_version
 
 4. If you want to add additional information,
-  1. construct a key-value paired `dictionary` object instance (i.e. `HashMap<Sting, String> dataMap`).
-  2. insert data fields as `key-value` pairs (i.e. `dataMap["username"] = "alex"`)
-  3. encode the instance object as `json` string value.
-  4. encode the `json` string value with `standard base64` string value.
-  5. add the finalized string value to `base64_json_string` field of the `EventData` instance at (3)
+  - construct a key-value paired `dictionary` object instance (i.e. `HashMap<Sting, String> dataMap`).
+  - insert data fields as `key-value` pairs (i.e. `dataMap["username"] = "alex"`)
+  - encode the instance object as `json` string value.
+  - encode the `json` string value with `standard base64` string value.
+  - add the finalized string value to `base64_json_string` field of the `EventData` instance at (3)
 
 5. Construct an instance of `JournalEvent` with the following fields:
   - event_id, maid, product_id, event_data (3), event_type (1), happen_at_ns
 
 6. Encode `JournalEvent` instance as the following:
-  1. encode the instance object as `json` string value. (i.e. "{"product_id":"myProductId"}")
-  2. encode the `json` string value with `standard base64` string value.
+  - encode the instance object as `json` string value. (i.e. "{"product_id":"myProductId"}")
+  - encode the `json` string value with `standard base64` string value.
 
 7. Append the finalized string value (6) to the end of `URL endpoint` (2)
 
@@ -218,13 +218,13 @@ The following procedure guides the encoding of a finalized string value.
 
 ## Validation
 
-You can verify whether your constructed url for RESTful API works using the following url endpoints (same POST method as above)
+You can validate whether your constructed url for RESTful API works using the following url endpoints (same POST method as above)
 
 Verify O-Event
-> "https://tracker-us.adsmoloco.com/tracking/post_o?o=%s";
+> https://tracker-us.adsmoloco.com/tracking/validate_o?o=%s
 
 Verify P-Event
-> "https://tracker-us.adsmoloco.com/tracking/post_p?p=%s";
+> https://tracker-us.adsmoloco.com/tracking/validate_p?p=%s
 
 If all goes all, you will receive a `valid` response.
 
