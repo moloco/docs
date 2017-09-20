@@ -42,7 +42,7 @@ In your `POST` operation, you must set a provided `Api-Key` string value (32-hex
 
 *HTTP HEADER*
 ```
-Api-Key: "123e4567-e89b-12d3-a456-426655440000"
+Api-Key: "099ad4a40d75dd0b8151630486513e9z"
 ``` 
 ![alt text](https://storage.googleapis.com/vansdk/s2s/1.png)
 
@@ -54,12 +54,12 @@ Api-Key: "123e4567-e89b-12d3-a456-426655440000"
 JournalEvent has the following data fields:
 
 ```
-string event_id;	// a unique id (i.e. UUID)
-string maid;		// an advertising ID with a OS (*i* or *a*) type prefix (i.e. i:123e4567-e89b-12d3-a456-426655440000 for iOS)
-string product_id;	// a provided product id
-EventData event_data;	// an EventData instance (see below)
-EventType event_type;	// an EventType enum (see below)
-long happen_at_ns;	// the time when the event occurred in nano seconds 
+string event_id;      // a unique id (i.e. UUID)
+string maid;          // an advertising ID with a OS type prefix ("i:" or "a:"), e.g. i:123e4567-e89b-12d3-a456-426655440000 for iOS
+string product_id;    // a provided product id
+EventData event_data; // an EventData instance (see below)
+EventType event_type; // an EventType enum (see below)
+long happen_at_ns;    // the time when the event occurred in nano seconds 
 ```
 
 ### EventData
@@ -72,12 +72,12 @@ string ip_address = 1;
 
 // Type of the device on which the event happened.
 enum DeviceType {
-	UNKNOWN_DEVICE = 0;
-	PHONE = 1; 		// Smart phone.
-	TABLET = 2; 		// Smart device with larger screen than smart phone.
-	PERSONAL_COMPUTER = 3; 	// Legacy personal computer in case we support full cross platform.
-	CONNECTED_DEVICE = 4; 	// General device connected to the Internet.
-	CONNECTED_TV = 5; 	// Smart TV.
+  UNKNOWN_DEVICE = 0;
+  PHONE = 1;              // Smart phone.
+  TABLET = 2;             // Smart device with larger screen than smart phone.
+  PERSONAL_COMPUTER = 3;  // Legacy personal computer in case we support full cross platform.
+  CONNECTED_DEVICE = 4;   // General device connected to the Internet.
+  CONNECTED_TV = 5;       // Smart TV.
 }
 
 DeviceType device_type = 2;
@@ -88,9 +88,9 @@ string device_model = 3;
 // Type of the device connectivity.
 enum ConnectionType {
     UNKNOWN_CONNECTION = 0;
-    ETHERNET = 1;	// Wired connection.
-    WIFI = 2;		// Wireless connection.
-    MOBILE = 3; 	// Wireless connection via cellar network.
+    ETHERNET = 1; // Wired connection.
+    WIFI = 2;     // Wireless connection.
+    MOBILE = 3;   // Wireless connection via cellar network.
 }
 
 ConnectionType connection_type = 4;
@@ -192,26 +192,26 @@ The following procedure guides the encoding of a finalized string value.
 2. Pick a corresponding `URL endpoint` (post_o? or post_?)
 
 3. Construct an instance of `EventData` with the following fields:
-	- ip_address, device_type, connection_type, carrier, country_code, language, os_version, app_version, sdk_version
+  - ip_address, device_type, connection_type, carrier, country_code, language, os_version, app_version, sdk_version
 
 4. If you want to add additional information,
-	1. construct a key-value paired `dictionary` object instance (i.e. `HashMap<Sting, String> dataMap`).
-	2. insert data fields as `key-value` pairs (i.e. `dataMap["username"] = "alex"`)
-	3. encode the instance object as `json` string value.
-	4. encode the `json` string value with `standard base64` string value.
-	5. add the finalized string value to `base64_json_string` field of the `EventData` instance at (3)
+  1. construct a key-value paired `dictionary` object instance (i.e. `HashMap<Sting, String> dataMap`).
+  2. insert data fields as `key-value` pairs (i.e. `dataMap["username"] = "alex"`)
+  3. encode the instance object as `json` string value.
+  4. encode the `json` string value with `standard base64` string value.
+  5. add the finalized string value to `base64_json_string` field of the `EventData` instance at (3)
 
 5. Construct an instance of `JournalEvent` with the following fields:
-	- event_id, maid, product_id, event_data (3), event_type (1), happen_at_ns
+  - event_id, maid, product_id, event_data (3), event_type (1), happen_at_ns
 
 6. Encode `JournalEvent` instance as the following:
-	1. encode the instance object as `json` string value. (i.e. "{"product_id":"myProductId"}")
-	2. encode the `json` string value with `standard base64` string value.
+  1. encode the instance object as `json` string value. (i.e. "{"product_id":"myProductId"}")
+  2. encode the `json` string value with `standard base64` string value.
 
 7. Append the finalized string value (6) to the end of `URL endpoint` (2)
 
 8. POST finalized API url (7) with Header values including provided `Api-Key` value
-	- ex) "Api-Key": "123e4567-e89b-12d3-a456-426655440000"
+  - ex) "Api-Key": "123e4567e89b12d3a456426655440000"
 
 9. Receive response!
 
@@ -228,7 +228,7 @@ Verify P-Event
 
 If all goes all, you will receive a `valid` response.
 
-*EXAMPLE*
+**EXAMPLE**
 ```
 Request:
   Request URL: /tracking/validate_p?p=ewogICJtYWlkIiA6ICJpOkI5MDNGQzIwLUM1QTktNDc5Ri04RkZBLTg3MjczMjQ2RDk2NyIsCiAgInByb2R1Y3RfaWQiIDogIm1vbG9jb190ZXN0aW5nX2FwcF9pb3MiLAogICJoYXBwZW5fYXRfbnMiIDogIjE1MDQ0OTA4Njc3MDA3MTYwMDAiLAogICJldmVudF9kYXRhIiA6IHsKICAgICJjb3VudHJ5X2NvZGUiIDogImtyIiwKICAgICJjdXN0b21fZXZlbnRfbmFtZSIgOiAicmVxdWVzdF9hZF9mcm9tX2Fkc2Rpc3BsYXlfaW9zIiwKICAgICJhcHBfdmVyc2lvbiIgOiAiMS40KDEpIiwKICAgICJzZGtfdmVyc2lvbiIgOiAiMi4wLjAiLAogICAgImJhc2U2NF9qc29uX21hcCIgOiAiZXlJaU9pSWlmUT09IiwKICAgICJkZXZpY2VfdHlwZSIgOiAxLAogICAgImNvbm5lY3Rpb25fdHlwZSIgOiAyLAogICAgImxhbmd1YWdlIiA6ICJlbi1LUiIsCiAgICAib3NfdmVyc2lvbiIgOiAiMTAuMy4zIiwKICAgICJpcF9hZGRyZXNzIiA6ICIxNzIuMzAuMS41NSIsCiAgICAiZGV2aWNlX21vZGVsIiA6ICJpUGhvbmU5LDM7aU9TIDEwLjMuMyIsCiAgICAiY2FycmllciIgOiAiS1QiCiAgfSwKICAiZXZlbnRfaWQiIDogIjA1QjA3NzgxLUFEQjQtNEVCQi04MzdFLTQ0M0Y0RjFCQzI5QSIsCiAgImV2ZW50X3R5cGUiIDogMTAwCn0=
@@ -274,7 +274,7 @@ Event-Data: base64-decoded for readability
 Validation: valid
 ```
 
-Now you are ready to synchronize your app with *S2S Moloco VAN SDK 2.0* !
+Now you are ready to synchronize your app with **S2S Moloco VAN SDK 2.0** !
 
 Once you complete integration, please work with your Moloco contact to verify receipt of the session and other events from VAN server.
 
