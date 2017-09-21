@@ -2,7 +2,7 @@
 Moloco VAN SDK provides session and event tracking for mobile applications to facilitate advertising for app publishers.
 
 ## Description
-For S2S VAN SDK 2.0, VAN user gathers relevant VAN information in their server and make requests to Moloco servers. This has several advantages over using Moloco SDK for native platforms (Android, iOS, Unity).
+For S2S VAN SDK 2.0, user gathers relevant VAN information in their server and make requests to Moloco servers. This has several advantages over using Moloco SDK for native platforms (Android, iOS, Unity).
 
 - No impact for end-users (e.g. app binary size, service latency, etc).
 - More sophisticated control (e.g. HTTP protocols, optimization)
@@ -16,7 +16,7 @@ Integrating with Moloco SDK requires a `Product ID` and `Api Key` from Moloco. C
 
 ## Instructions
 
-Like many other RESTful APIs, VAN APIs use resource entities to construct a URL. Mainly we use two entities `O-Event` and `P-Event` and the final URL format looks like this:
+Like many other RESTful APIs, VAN API use resource entities to construct a URL. Mainly we use two entities `O-Event` and `P-Event` and the final URL format looks like this:
 
 O-Event
 > https://tracker-us.adsmoloco.com/tracking/post_o?o=%s
@@ -24,8 +24,7 @@ O-Event
 P-Event
 > https://tracker-us.adsmoloco.com/tracking/post_p?p=%s
 
-Where `%s` part is an bas64 encoded journal event string value which will be described below.
-
+Where `%s` part is an base64-encoded journal event string value which will be described below.
 
 #### O-Event
 This event type is used for an (good) 'outcome' of ad-event. In our analogy, an event of this type is like registration of a company.
@@ -114,7 +113,7 @@ string app_version = 9;
 string sdk_version = 10;
 
 // A string representation of a key-value dictionary like object,
-// encoded to a json string, which is then encoded to standard base64 encoding.
+// encoded to a json string, which is then encoded to standard base64-encoding.
 string base64_json_map = 11;
 
 // Use this field to give a meaningful name when the event type is P_CUSTOM_(00,16).
@@ -178,7 +177,7 @@ enum PEventType {
 
 ## RESTful API URL Format
 
-As mentioned above, a url format for O-JournalEvent looks like this:
+As mentioned above, a URL format for O-JournalEvent looks like this:
 
 > https://tracker-us.adsmoloco.com/tracking/post_o?o=%s
 
@@ -210,7 +209,7 @@ The following procedure guides the encoding of a finalized string value.
 
 7. Append the finalized string value (6) to the end of `URL endpoint` (2)
 
-8. POST finalized API url (7) with Header values including provided `Api-Key` value
+8. POST finalized API URL (7) with Header values including provided `Api-Key` value
   - ex) "Api-Key": "123e4567e89b12d3a456426655440000"
 
 9. Receive response!
@@ -218,7 +217,7 @@ The following procedure guides the encoding of a finalized string value.
 
 ## Validation
 
-You can validate whether your constructed url for RESTful API works using the following url endpoints (same POST method as above)
+You can validate whether your constructed URL for RESTful API works using the following URL endpoints (same POST method as above)
 
 Verify O-Event
 > https://tracker-us.adsmoloco.com/tracking/validate_o?o=%s
