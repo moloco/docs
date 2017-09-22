@@ -1,25 +1,24 @@
 # Moloco VAN API - Server to Server (S2S)
-Moloco VAN API provides session and event tracking for mobile applications to facilitate advertising for app publishers.
+Moloco VAN API supports session and event tracking for mobile applications to facilitate advertising for app publishers.
 
 ## Description
-For `VAN S2S API`, user gathers relevant tracking information in their server and make requests to Moloco servers. If you are a mobile app company, we suggest using our native SDK ([Android](android.md), [iOS](ios.md), Unity) since a lot of work (parsing, optimizing, encoding, and HTTP handling) is already done along with simple interface.
+For `VAN S2S API`, users gather relevant tracking information in their servers and make requests to Moloco VAN servers. If you are a mobile app company, we suggest using our native VAN SDK ([Android](android.md), [iOS](ios.md), Unity), since a lot of work (parsing, optimizing, encoding, and HTTP handling) is already done along with simple interface.
 
 `VAN S2S API` is encouraged for the following cases:
 
-- Occurrence of an event only handled by webview
-- Events only happening from the server side (e.g., status change of money wire transfer for a banking app, results of invitation to join a community)
-- Manipulated events by some post-processing after the in-app activity (e.g., separate "first purchase" event after looking up the payment history from the server side)
+- Occurrence of an event only handled by webview.
+- Events only happening from the server side (e.g., status change of money wire transfer for a banking app, results of invitation to join a community).
+- Manipulated events by some post-processing after the in-app activity (e.g., separate "first purchase" event after looking up the payment history from the server side).
 
-`VAN S2S API` can have several advantages over using `Moloco VAN SDK` for native platforms:
+`VAN S2S API` can have several advantages over using `VAN SDK` for native platforms:
 
 - No impact for end-users (e.g. app binary size, service latency, etc).
-- More sophisticated control (e.g., HTTP protocols, optimization)
-
+- More sophisticated control (e.g., HTTP protocols, optimization).
 
 ## Prerequisites
-Moloco `VAN S2S API` is compatible for any platform with HTTP protocol support.
+Moloco `VAN S2S API` is compatible for any platform supporting HTTP protocols.
 
-Integrating with Moloco API requires a `Product ID` and `Api Key` from Moloco. Contact [Moloco](mailto:support@molocoads.com) if you are missing either value.
+Integrating with Moloco API requires `Product ID` and `Api Key` from Moloco. Contact [Moloco](mailto:support@molocoads.com) if you are missing either value.
 
 ## Instructions
 
@@ -31,7 +30,7 @@ O-Event
 P-Event
 > https://tracker-us.adsmoloco.com/tracking/post_p?p=%s
 
-Where `%s` part is an base64-encoded journal event string value which will be described below.
+Where `%s` part is a *json-base64-url-encoded* string value of a `JournalEvent` instance, which will be described below.
 
 #### O-Event
 This event type is used for an (good) 'outcome' of ad-event. In our analogy, an event of this type is like registration of a company.
@@ -39,17 +38,19 @@ This event type is used for an (good) 'outcome' of ad-event. In our analogy, an 
 #### P-Event 
 This event type is used for a 'post-outcome' of ad-event. In our analogy, an event of this type is like making a revenue.
 
-## Supported Operation: POST
+## Supported Operation: HTTP POST
 
-We currently accept `POST` operation for tracking events. For a valid `POST` operation, the target `Product Id` and `Api-Key` must be registered by Moloco.
+We currently accept HTTP `POST` operation for tracking events. For a valid `POST` operation, the target `Product Id` and `Api-Key` must be registered by Moloco.
 
 In your `POST` operation, you must set a provided `Api-Key` string value (32-hexadecimal digits) to a Header with `Api-Key` key-value pair.
 
 *HTTP HEADER*
+
 ```
 Api-Key: "099ad4a40d75dd0b8151630486513e9z"
-``` 
-![alt text](https://storage.googleapis.com/vanAPI/s2s/1.png)
+```
+
+![](https://storage.googleapis.com/vanAPI/s2s/1.png)
 
 ## Data Structures
 
@@ -188,41 +189,43 @@ As mentioned above, a URL format for O-JournalEvent looks like this:
 
 > https://tracker-us.adsmoloco.com/tracking/post_o?o=%s
 
-Indeed, a string value that is appended at the end is an encoded JournalEvent instance.
+`%s` must be replaced with a *json-base64-url-encoded* string value of a `JournalEvent` instance which contains event tracking information.
 
-The following procedure guides the encoding of a finalized string value.
+To build the string value above, please follow the following procedure:
 
 
-1. Pick an `EventType` (O-EventType or P-EventType) to track.
+1. Pick a target `EventType` (O-EventType or P-EventType) for tracking.
 
 2. Pick a corresponding `URL endpoint` (post_o? or post_?)
 
 3. Construct an instance of `EventData` with the following fields:
-  - ip_address, device_type, connection_type, carrier, country_code, language, os_version, app_version, API_version
+  - `ip_address`, `device_type`, `connection_type`, `carrier`, `country_code`, `language`, `os_version`, `app_version`, `API_version`
 
 4. If you want to add additional information,
   - construct a key-value paired `dictionary` object instance (i.e. `HashMap<Sting, String> dataMap`).
   - insert data fields as `key-value` pairs (e.g., `dataMap["username"] = "alex"`)
   - encode the instance object as `json` string value.
-  - encode the `json` string value with `standard base64` string value.
-  - add the finalized string value to `base64_json_string` field of the `EventData` instance at (3)s
+  - encode the `json` string value with `standard base64` encoding.
+  - add the finalized string value to `base64_json_string` field of the `EventData` instance built in (3).
 
 5. Construct an instance of `JournalEvent` with the following fields:
-  - event_id, maid, product_id, event_data (3), event_type (1), happen_at_ns
+  - `event_id`, `maid`, `product_id`, `event_data` (3), `event_type` (1), `happen_at_ns`.
 
 6. Encode `JournalEvent` instance as the following:
-  - encode the instance object as `json` string value. (i.e. "{"product_id":"myProductId"}")
-  - encode the `json` string value above with `standard base64` string value.
-  - `Url encode` the `standard base64` string above.
+  - encode the instance object as `json` string value. (e.g., "{"product_id":"myProductId"}")
+  - encode the `json` string value above with `standard base64` encoding.
+  - `URL encode` the `standard base64` string above.
 
-7. Append the finalized string value (6) to the end of `URL endpoint` (2)
+7. Append the finalized string value (6) to the end of `URL endpoint` (2).
 
-8. POST finalized API URL (7) with Header values including provided `Api-Key` value
-  - ex) "Api-Key": "123e4567e89b12d3a456426655440000"
+8. POST finalized API URL (7) with Header values including provided `Api-Key`.
+  - e.g., Api-Key: "123e4567e89b12d3a456426655440000"
 
-9. Receive response!
+9. Receive response from the server!
 
 ## Base64 encoding demonstration
+
+### Java
 
 ```java
 public static String encodeToBase64JsonUrl(JournalEvent journalEvent) {
@@ -239,6 +242,7 @@ public static String encodeToBase64JsonUrl(JournalEvent journalEvent) {
 }
 ```
 
+### Objective C
 
 ```objc
 @implementation JournalEvent
@@ -273,10 +277,9 @@ NSString *encodedUrl = [url stringByAddingPercentEncodingWithAllowedCharacters:[
 
 ```
 
-
 ## Validation
 
-You can validate whether your constructed URL for RESTful API works using the following URL endpoints (same POST method as above)
+You can validate whether your constructed `URL` for `Moloco VAN S2S API` works using the following validation URL endpoints (same POST method as above)
 
 Verify O-Event
 > https://tracker-us.adsmoloco.com/tracking/validate_o?o=%s
