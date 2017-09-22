@@ -1,22 +1,29 @@
-# Moloco VAN SDK - Server 2 Server (S2S)
-Moloco VAN SDK provides session and event tracking for mobile applications to facilitate advertising for app publishers.
+# Moloco VAN API - Server to Server (S2S)
+Moloco VAN API provides session and event tracking for mobile applications to facilitate advertising for app publishers.
 
 ## Description
-For S2S VAN SDK 2.0, user gathers relevant VAN information in their server and make requests to Moloco servers. This has several advantages over using Moloco SDK for native platforms (Android, iOS, Unity).
+For `VAN S2S API`, user gathers relevant tracking information in their server and make requests to Moloco servers. If you are a mobile app company, we suggest using our native SDK ([Android](android.md), [iOS](ios.md), Unity) since a lot of work (parsing, optimizing, encoding, and HTTP handling) is already done along with simple interface.
+
+`VAN S2S API` is encouraged for the following cases:
+
+- Occurrence of an event only handled by webview
+- Events only happening from the server side (e.g., status change of money wire transfer for a banking app, results of invitation to join a community)
+- Manipulated events by some post-processing after the in-app activity (e.g., separate "first purchase" event after looking up the payment history from the server side)
+
+`VAN S2S API` can have several advantages over using `Moloco VAN SDK` for native platforms:
 
 - No impact for end-users (e.g. app binary size, service latency, etc).
-- More sophisticated control (e.g. HTTP protocols, optimization)
+- More sophisticated control (e.g., HTTP protocols, optimization)
 
-However, if you are a mobile app company, we suggest using our native SDK (Android, iOS, Unity) since a lot of work (parsing, optimizing, encoding, and HTTP handling) is already done along with simple interface.
 
 ## Prerequisites
-Moloco S2S VAN SDK 2.0.0 is compatible for any device, as long as correctly used.
+Moloco `VAN S2S API` is compatible for any platform with HTTP protocol support.
 
-Integrating with Moloco SDK requires a `Product ID` and `Api Key` from Moloco. Contact [Moloco](mailto:support@molocoads.com) if you are missing either value.
+Integrating with Moloco API requires a `Product ID` and `Api Key` from Moloco. Contact [Moloco](mailto:support@molocoads.com) if you are missing either value.
 
 ## Instructions
 
-Like many other RESTful APIs, VAN API use resource entities to construct a URL. Mainly we use two entities `O-Event` and `P-Event` and the final URL format looks like this:
+Like many other RESTful APIs, `VAN S2S API` uses resource entities to construct a URL. Mainly we use two entities `O-Event` and `P-Event` and the final URL format looks like this:
 
 O-Event
 > https://tracker-us.adsmoloco.com/tracking/post_o?o=%s
@@ -32,7 +39,6 @@ This event type is used for an (good) 'outcome' of ad-event. In our analogy, an 
 #### P-Event 
 This event type is used for a 'post-outcome' of ad-event. In our analogy, an event of this type is like making a revenue.
 
-
 ## Supported Operation: POST
 
 We currently accept `POST` operation for tracking events. For a valid `POST` operation, the target `Product Id` and `Api-Key` must be registered by Moloco.
@@ -43,10 +49,11 @@ In your `POST` operation, you must set a provided `Api-Key` string value (32-hex
 ```
 Api-Key: "099ad4a40d75dd0b8151630486513e9z"
 ``` 
-![alt text](https://storage.googleapis.com/vansdk/s2s/1.png)
+![alt text](https://storage.googleapis.com/vanAPI/s2s/1.png)
 
 ## Data Structures
 
+The following data structures are defined as `Protocol Buffers` format described [here](https://developers.google.com/protocol-buffers/).
 
 ### JournalEvent
 
@@ -109,8 +116,8 @@ string os_version = 8;
 // App version code (e.g., 1.7.5).
 string app_version = 9;
 
-// VAN SDK version code (e.g., 1.1.3).
-string sdk_version = 10;
+// VAN API version code (e.g., 1.1.3).
+string API_version = 10;
 
 // A string representation of a key-value dictionary like object,
 // encoded to a json string, which is then encoded to standard base64-encoding.
@@ -191,21 +198,22 @@ The following procedure guides the encoding of a finalized string value.
 2. Pick a corresponding `URL endpoint` (post_o? or post_?)
 
 3. Construct an instance of `EventData` with the following fields:
-  - ip_address, device_type, connection_type, carrier, country_code, language, os_version, app_version, sdk_version
+  - ip_address, device_type, connection_type, carrier, country_code, language, os_version, app_version, API_version
 
 4. If you want to add additional information,
   - construct a key-value paired `dictionary` object instance (i.e. `HashMap<Sting, String> dataMap`).
-  - insert data fields as `key-value` pairs (i.e. `dataMap["username"] = "alex"`)
+  - insert data fields as `key-value` pairs (e.g., `dataMap["username"] = "alex"`)
   - encode the instance object as `json` string value.
   - encode the `json` string value with `standard base64` string value.
-  - add the finalized string value to `base64_json_string` field of the `EventData` instance at (3)
+  - add the finalized string value to `base64_json_string` field of the `EventData` instance at (3)s
 
 5. Construct an instance of `JournalEvent` with the following fields:
   - event_id, maid, product_id, event_data (3), event_type (1), happen_at_ns
 
 6. Encode `JournalEvent` instance as the following:
   - encode the instance object as `json` string value. (i.e. "{"product_id":"myProductId"}")
-  - encode the `json` string value with `standard base64` string value.
+  - encode the `json` string value above with `standard base64` string value.
+  - `Url encode` the `standard base64` string above.
 
 7. Append the finalized string value (6) to the end of `URL endpoint` (2)
 
@@ -213,6 +221,57 @@ The following procedure guides the encoding of a finalized string value.
   - ex) "Api-Key": "123e4567e89b12d3a456426655440000"
 
 9. Receive response!
+
+## Base64 encoding demonstration
+
+```java
+public static String encodeToBase64JsonUrl(JournalEvent journalEvent) {
+    String encodedObject = "";
+    try {
+        encodedObject = Uri.encode(
+                          Base64.encodeToString(
+                            JsonUtils.toJson(journalEvent).getBytes("UTF-8"), 
+                              Base64.DEFAULT));
+    } catch (Exception e) {
+        Log.w(Constants.LOG, "Failed to encode journal event: " + journalEvent.toString() + ", error:" + e);
+    }
+    return encodedObject;
+}
+```
+
+
+```objc
+@implementation JournalEvent
+
+...
+
+- (NSString *)toBase64JsonMap {
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[self toDictionary] options:NSJSONWritingPrettyPrinted error:&error];
+    if (jsonData == NULL) {
+        jsonData = [@"{}" dataUsingEncoding:NSUTF8StringEncoding];
+    }
+    NSLog(@"\nJournal Event (JSON):\n%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);    
+    return [jsonData base64EncodedStringWithOptions:0];
+}
+
+- (NSDictionary *)toDictionary {
+    return @{@"event_id": self.eventId,
+             @"maid": self.maid,
+             @"product_id": self.productId,
+             @"happen_at_ns": [NSString stringWithFormat:@"%lld", self.happenAtNs],
+             @"event_data": [self.eventData toDictionary],
+             @"event_type": self.eventType};
+}
+
+...
+
+@end
+
+NSString *url = [NSString stringWithFormat:endPointFormat,[journalEvent toBase64JsonMap]];
+NSString *encodedUrl = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+
+```
 
 
 ## Validation
@@ -225,7 +284,7 @@ Verify O-Event
 Verify P-Event
 > https://tracker-us.adsmoloco.com/tracking/validate_p?p=%s
 
-If all goes all, you will receive a `valid` response.
+If all goes well, you will receive a `valid` response.
 
 **EXAMPLE**
 ```
@@ -262,7 +321,7 @@ PJournalEvent: json-marshaled for readability
       "language": "en-KR",
       "os_version": "10.3.3",
       "app_version": "1.4(1)",
-      "sdk_version": "2.0.0",
+      "API_version": "2.0.0",
       "base64_json_map": "eyJsYXRpdHVkZSI6MC4xMjM5MjMsInVzZXJuYW1lIjoibW9sb2NvIiwibG9uZ2l0dWRlIjowLjUz\nNDYxMjN9\n",
       "custom_event_name": "custom_click_test_from_myMobileApp"
     },
@@ -273,8 +332,8 @@ Event-Data: base64-decoded for readability
 Validation: valid
 ```
 
-Now you are ready to synchronize your app with **S2S Moloco VAN SDK 2.0** !
+Now you are ready to synchronize your app with **S2S Moloco VAN API 2.0** !
 
 Once you complete integration, please work with your Moloco contact to verify receipt of the session and other events from VAN server.
 
-If there is any question regarding with Moloco VAN iOS SDK integration, please contact [Moloco](mailto:support@molocoads.com).
+If there is any question regarding with `Moloco VAN S2S API` integration, please contact [Moloco](mailto:support@molocoads.com).
