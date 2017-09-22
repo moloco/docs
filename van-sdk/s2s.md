@@ -50,7 +50,7 @@ In your `POST` operation, you must set a provided `Api-Key` string value (32-hex
 Api-Key: "099ad4a40d75dd0b8151630486513e9z"
 ```
 
-![](https://storage.googleapis.com/vanAPI/s2s/1.png)
+![](https://storage.googleapis.com/vansdk/s2s/1.png)
 
 ## Data Structures
 
@@ -117,8 +117,8 @@ string os_version = 8;
 // App version code (e.g., 1.7.5).
 string app_version = 9;
 
-// VAN API version code (e.g., 1.1.3).
-string API_version = 10;
+// VAN sdk version code (e.g., 1.1.3).
+string sdk_version = 10;
 
 // A string representation of a key-value dictionary like object,
 // encoded to a json string, which is then encoded to standard base64-encoding.
@@ -199,7 +199,7 @@ To build the string value above, please follow the following procedure:
 2. Pick a corresponding `URL endpoint` (post_o? or post_?)
 
 3. Construct an instance of `EventData` with the following fields:
-  - `ip_address`, `device_type`, `connection_type`, `carrier`, `country_code`, `language`, `os_version`, `app_version`, `API_version`
+  - `ip_address`, `device_type`, `connection_type`, `carrier`, `country_code`, `language`, `os_version`, `app_version`, `sdk_version`
 
 4. If you want to add additional information,
   - construct a key-value paired `dictionary` object instance (i.e. `HashMap<Sting, String> dataMap`).
@@ -324,7 +324,7 @@ PJournalEvent: json-marshaled for readability
       "language": "en-KR",
       "os_version": "10.3.3",
       "app_version": "1.4(1)",
-      "API_version": "2.0.0",
+      "sdk_version": "2.0.0",
       "base64_json_map": "eyJsYXRpdHVkZSI6MC4xMjM5MjMsInVzZXJuYW1lIjoibW9sb2NvIiwibG9uZ2l0dWRlIjowLjUz\nNDYxMjN9\n",
       "custom_event_name": "custom_click_test_from_myMobileApp"
     },
