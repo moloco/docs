@@ -47,7 +47,7 @@ In your `POST` operation, you must set a provided `Api-Key` string value (32-hex
 *HTTP HEADER*
 
 ```
-Api-Key: "099ad4a40d75dd0b8151630486513e9z"
+Api-Key: "111ad1a11d11dd1b1111111111111e1z"
 ```
 
 ![](https://storage.googleapis.com/vansdk/s2s/1.png)
@@ -61,7 +61,7 @@ The following data structures are defined as `Protocol Buffers` format described
 JournalEvent has the following data fields:
 
 ```
-string event_id;      // a unique id (i.e. UUID)
+string event_id;      // a unique id (e.g., UUID)
 string maid;          // an advertising ID with a OS type prefix ("i:" or "a:"), e.g. i:123e4567-e89b-12d3-a456-426655440000 for iOS
 string product_id;    // a provided product id
 EventData event_data; // an EventData instance (see below)
@@ -202,7 +202,7 @@ To build the string value above, please follow the following procedure:
   - `ip_address`, `device_type`, `connection_type`, `carrier`, `country_code`, `language`, `os_version`, `app_version`, `sdk_version`
 
 4. If you want to add additional information,
-  - construct a key-value paired `dictionary` object instance (i.e. `HashMap<Sting, String> dataMap`).
+  - construct a key-value paired `dictionary` object instance (e.g., `HashMap<Sting, String> dataMap`).
   - insert data fields as `key-value` pairs (e.g., `dataMap["username"] = "alex"`)
   - encode the instance object as `json` string value.
   - encode the `json` string value with `standard base64` encoding.
@@ -219,7 +219,7 @@ To build the string value above, please follow the following procedure:
 7. Append the finalized string value (6) to the end of `URL endpoint` (2).
 
 8. POST finalized API URL (7) with Header values including provided `Api-Key`.
-  - e.g., Api-Key: "123e4567e89b12d3a456426655440000"
+  - e.g., Api-Key: "111ad1a11d11dd1b1111111111111e1z"
 
 9. Receive response from the server!
 
@@ -227,55 +227,66 @@ To build the string value above, please follow the following procedure:
 
 ### Java
 
-```java
-public static String encodeToBase64JsonUrl(JournalEvent journalEvent) {
-    String encodedObject = "";
-    try {
-        encodedObject = Uri.encode(
-                          Base64.encodeToString(
-                            JsonUtils.toJson(journalEvent).getBytes("UTF-8"), 
-                              Base64.DEFAULT));
-    } catch (Exception e) {
-        Log.w(Constants.LOG, "Failed to encode journal event: " + journalEvent.toString() + ", error:" + e);
+```go
+package main
+
+import (
+  "fmt"
+  b64 "encoding/base64"
+  "encoding/json"
+  "net/url"
+)
+
+
+type JournalEvent struct {
+  EventId     string    `json:"event_id"`
+  Maid        string    `json:"maid"`
+  ProductId   string    `json:"product_id"`
+  EventData   EventData `json:"event_data"`
+  EventType   int64     `json:"event_type"`
+  HappenAtNs  int64     `json:"happen_at_ns"`
+}
+
+type EventData struct {
+  Carrier     string  `json:"carrier"`
+  Language    string  `json:"language"`
+  OsVersion   string  `json:"os_version"`
+  SdkVersion  string  `json:"sdk_version"`
+  // etc.
+}
+
+const (
+  p_login = 32
+  p_event_url_format = "https://tracker-us.adsmoloco.com/tracking/post_p?p=%s"
+)
+
+func main() {
+    journalEvent := &JournalEvent{
+      EventId: "05B07781-ADB4-4EBB-837E-443F4F1BC29A",
+      Maid: "a:B903FC20-C5A9-479F-8FFA-87273246D96a",
+      ProductId: "moloco_van_s2s_testing_app",
+      EventType: p_login,
+      HappenAtNs: 1504490867700716000,
     }
-    return encodedObject;
+    
+    jsonString, err := json.Marshal(journalEvent)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Printf("json string: %s\n", string(jsonString))
+    
+    encodedString := b64.StdEncoding.EncodeToString([]byte(jsonString))
+    fmt.Printf("encoded string: %s\n", string(encodedString))
+
+    escapedString := url.QueryEscape(encodedString)
+    fmt.Printf("escaped string: %s\n", string(escapedString))
+    
+    finalURL := fmt.Sprintf(p_event_url_format, escapedString)
+    fmt.Printf("final URL: %s\n", finalURL)
 }
 ```
 
-### Objective C
-
-```objc
-@implementation JournalEvent
-
-...
-
-- (NSString *)toBase64JsonMap {
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[self toDictionary] options:NSJSONWritingPrettyPrinted error:&error];
-    if (jsonData == NULL) {
-        jsonData = [@"{}" dataUsingEncoding:NSUTF8StringEncoding];
-    }
-    NSLog(@"\nJournal Event (JSON):\n%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);    
-    return [jsonData base64EncodedStringWithOptions:0];
-}
-
-- (NSDictionary *)toDictionary {
-    return @{@"event_id": self.eventId,
-             @"maid": self.maid,
-             @"product_id": self.productId,
-             @"happen_at_ns": [NSString stringWithFormat:@"%lld", self.happenAtNs],
-             @"event_data": [self.eventData toDictionary],
-             @"event_type": self.eventType};
-}
-
-...
-
-@end
-
-NSString *url = [NSString stringWithFormat:endPointFormat,[journalEvent toBase64JsonMap]];
-NSString *encodedUrl = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-
-```
 
 ## Validation
 
@@ -299,7 +310,7 @@ Request:
     X-Forwarded-Proto: https
     Connection: Keep-Alive
     Postman-Token: 55f6ae6d-f65d-484e-8712-a075c70ad826
-    Api-Key: 099ad4a40d75dd0b8151630486513e9z
+    Api-Key: 111ad1a11d11dd1b1111111111111e1z
     Accept: */*
     Content-Length: 0
     X-Cloud-Trace-Context: 2e2c895f6c0db487e38ce2617a5f4a06/1384854340696844375
@@ -311,9 +322,9 @@ Request:
 PJournalEvent: json-marshaled for readability
 {
     "event_id": "05B07781-ADB4-4EBB-837E-443F4F1BC29A",
-    "maid": "i:B903FC20-C5A9-479F-8FFA-87273246D967",
-    "product_id": "moloco_testing_app_ios",
-    "event_type": 100,
+    "maid": "i:B903FC20-C5A9-479F-8FFA-87273246D96a",
+    "product_id": "moloco_van_s2s_test_app",
+    "event_type": 32,
     "event_data": {
       "ip_address": "172.30.1.55",
       "device_type": 1,
