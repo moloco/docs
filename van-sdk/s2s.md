@@ -283,7 +283,7 @@ func main() {
 
     finalURL := fmt.Sprintf(p_event_url_format, escapedString)
     fmt.Printf("final URL: %s\n", finalURL)
-    // final URL: https://tracker-us.adsmoloco.com/tracking/validate_p?p=eyJldmVudF9pZCI6IjA1QjA3NzgxLUFE...
+    // final URL: https://tracker-us.adsmoloco.com/tracking/post_p?p=eyJldmVudF9pZCI6IjA1QjA3NzgxLUFE...
 }
 ```
 
