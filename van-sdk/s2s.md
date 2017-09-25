@@ -266,22 +266,22 @@ const (
 
 func main() {
     journalEvent := &JournalEvent{
-      EventId: "05B07781-ADB4-4EBB-837E-443F4F1BC29A",
-      Maid: "a:B903FC20-C5A9-479F-8FFA-87273246D96a",
-      ProductId: "moloco_van_s2s_testing_app",
-      EventType: p_login,
-      EventData: EventData{
-        IpAddress:  "175.203.211.101",
-        DeviceType:   1,
-        DeviceModel:  "iPhone7",
-        ConnectionType: 2,
-        Carrier:  "kt",
-        Language:   "EN",
-        OsVersion:  "1.2.3",
-        AppVersion:   "1.0.0",
-        SdkVersion:   "2.0.0",
-        Base64JsonMap: "",
-        CustomEventName: "",
+      EventId:    "05B07781-ADB4-4EBB-837E-443F4F1BC29A",
+      Maid:       "a:B903FC20-C5A9-479F-8FFA-87273246D96a",
+      ProductId:  "moloco_van_s2s_testing_app",
+      EventType:  p_login,
+      EventData:  EventData{
+        IpAddress:        "175.203.211.101",
+        DeviceType:       1,
+        DeviceModel:      "iPhone7",
+        ConnectionType:   2,
+        Carrier:          "kt",
+        Language:         "EN",
+        OsVersion:        "1.2.3",
+        AppVersion:       "1.0.0",
+        SdkVersion:       "2.0.0",
+        Base64JsonMap:    "",
+        CustomEventName:  "",
       },
       HappenAtNs: 1504490867700716000,
     }
