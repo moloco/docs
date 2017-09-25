@@ -46,10 +46,6 @@ In your `POST` operation, you must set a provided `Api-Key` string value (32-hex
 
 *HTTP HEADER*
 
-```
-Api-Key: "111ad1a11d11dd1b1111111111111e1z"
-```
-
 ![](https://storage.googleapis.com/vansdk/s2s/1.png)
 
 ## Data Structures
@@ -223,9 +219,9 @@ To build the string value above, please follow the following procedure:
 
 9. Receive response from the server!
 
-## Base64 encoding demonstration
+## Final URL demonstration
 
-### Java
+### Go
 
 ```go
 package main
