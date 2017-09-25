@@ -244,11 +244,18 @@ type JournalEvent struct {
 }
 
 type EventData struct {
-  Carrier     string  `json:"carrier"`
-  Language    string  `json:"language"`
-  OsVersion   string  `json:"os_version"`
-  SdkVersion  string  `json:"sdk_version"`
-  // include all other event data fields here
+  IpAddress       string  `json:"ip_address"`
+  DeviceType      int64   `json:"device_type"`
+  DeviceModel     string  `json:"device_model"`
+  ConnectionType  int64   `json:"connection_type"`
+  Carrier         string  `json:"carrier"`
+  CountryCode     string  `json:"country_code"`
+  Language        string  `json:"language"`
+  OsVersion       string  `json:"os_version"`
+  AppVersion      string  `json:"app_version"`
+  SdkVersion      string  `json:"sdk_version"`
+  Base64JsonMap   string  `json:"base64_json_map"`
+  CustomEventName string  `json:"custom_event_name"`
 }
 
 const (
@@ -263,28 +270,42 @@ func main() {
       Maid: "a:B903FC20-C5A9-479F-8FFA-87273246D96a",
       ProductId: "moloco_van_s2s_testing_app",
       EventType: p_login,
+      EventData: EventData{
+        IpAddress:  "175.203.211.101",
+        DeviceType:   1,
+        DeviceModel:  "iPhone7",
+        ConnectionType: 2,
+        Carrier:  "kt",
+        Language:   "EN",
+        OsVersion:  "1.2.3",
+        AppVersion:   "1.0.0",
+        SdkVersion:   "2.0.0",
+        Base64JsonMap: "",
+        CustomEventName: "",
+      },
       HappenAtNs: 1504490867700716000,
     }
+
+    // Encode data map for Base64JsonMap field.
+    dataMap := map[string]string{"user" : "alex"}
+    dataMapString, _ := json.Marshal(dataMap)
+    // dataMapString: {"user":"alex"}
+    dataMapBase64 := b64.StdEncoding.EncodeToString([]byte(dataMapString))
+    // dataMapBase64: eyJ1c2VyIjoiYWxleCJ9
+    journalEvent.EventData.Base64JsonMap = dataMapBase64
     
-    jsonString, err := json.Marshal(journalEvent)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-    fmt.Printf("json string: %s\n", string(jsonString))
-    //json string: {"event_id":"05B07781-ADB4-4EBB-837E-443F4F1BC29A","maid":"a:B903FC20-C5A9-479F-8FFA-87273246D96a","product_id":"moloco_van_s2s_testing_app","event_data":{"carrier":"","language":"","os_version":"","sdk_version":""},"event_type":32,"happen_at_ns":1504490867700716000}
+    // Encode JournalEvent to Json-Base64-UrlEscaped string.
+    jsonString, _ := json.Marshal(journalEvent)
+    // jsonString: {"event_id":"05B07781-ADB4-4EBB-837E-443F4F1BC29A","maid":"i:B903FC20-C5A9-479F-8FFA-87273246D96a","product_id":"moloco_van_s2s_test_app","event_type":32,"event_data":{"ip_address":"175.203.211.101","device_type":1,"device_model":"iPhone7","connection_type":2,"carrier":"kt","country_code":"","language":"EN","os_version":"1.2.3","app_version":"1.0.0","sdk_version":"2.0.0","base64_json_map":"eyJ1c2VyIjoiYWxleCJ9","custom_event_name":""},"happen_at_ns":1504490867700716000}
 
     encodedString := b64.StdEncoding.EncodeToString([]byte(jsonString))
-    fmt.Printf("encoded string: %s\n", string(encodedString))
-    // encoded string: eyJldmVudF9pZCI6IjA1QjA3NzgxLUFEQjQtNEVCQi04MzdFLTQ0M0Y0RjFCQzI5QSIsIm1haWQiOiJhOk...
+    // encodedString: eyJldmVudF9pZCI6IjA1QjA3NzgxLUFEQjQtNEVCQi04MzdFLTQ0M0Y0RjFCQzI5QSIsIm1haWQiOiJhOk...
 
     escapedString := url.QueryEscape(encodedString)
-    fmt.Printf("escaped string: %s\n", string(escapedString))
-    // escaped string: eyJldmVudF9pZCI6IjA1QjA3NzgxLUFEQjQtNEVCQi04MzdFLTQ0M0Y0RjFCQzI5QSIsIm1haWQiOiJhOk...    
+    // escapedString: eyJldmVudF9pZCI6IjA1QjA3NzgxLUFEQjQtNEVCQi04MzdFLTQ0M0Y0RjFCQzI5QSIsIm1haWQiOiJhOk...
 
     finalURL := fmt.Sprintf(p_event_url_format, escapedString)
-    fmt.Printf("final URL: %s\n", finalURL)
-    // final URL: https://tracker-us.adsmoloco.com/tracking/post_p?p=eyJldmVudF9pZCI6IjA1QjA3NzgxLUFE...
+    // finalURL: https://tracker-us.adsmoloco.com/tracking/post_p?p=eyJldmVudF9pZCI6IjA1QjA3NzgxLUFE...
 }
 ```
 
