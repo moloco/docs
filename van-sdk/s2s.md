@@ -271,15 +271,19 @@ func main() {
         return
     }
     fmt.Printf("json string: %s\n", string(jsonString))
-    
+    //json string: {"event_id":"05B07781-ADB4-4EBB-837E-443F4F1BC29A","maid":"a:B903FC20-C5A9-479F-8FFA-87273246D96a","product_id":"moloco_van_s2s_testing_app","event_data":{"carrier":"","language":"","os_version":"","sdk_version":""},"event_type":32,"happen_at_ns":1504490867700716000}
+
     encodedString := b64.StdEncoding.EncodeToString([]byte(jsonString))
     fmt.Printf("encoded string: %s\n", string(encodedString))
+    // encoded string: eyJldmVudF9pZCI6IjA1QjA3NzgxLUFEQjQtNEVCQi04MzdFLTQ0M0Y0RjFCQzI5QSIsIm1haWQiOiJhOk...
 
     escapedString := url.QueryEscape(encodedString)
     fmt.Printf("escaped string: %s\n", string(escapedString))
-    
+    // escaped string: eyJldmVudF9pZCI6IjA1QjA3NzgxLUFEQjQtNEVCQi04MzdFLTQ0M0Y0RjFCQzI5QSIsIm1haWQiOiJhOk...    
+
     finalURL := fmt.Sprintf(p_event_url_format, escapedString)
     fmt.Printf("final URL: %s\n", finalURL)
+    // final URL: https://tracker-us.adsmoloco.com/tracking/validate_p?p=eyJldmVudF9pZCI6IjA1QjA3NzgxLUFE...
 }
 ```
 
