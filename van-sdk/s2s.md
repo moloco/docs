@@ -227,9 +227,9 @@ To build the string value above, please follow the following procedure:
 package main
 
 import (
-  "fmt"
   b64 "encoding/base64"
   "encoding/json"
+  "fmt"
   "net/url"
 )
 
