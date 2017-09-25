@@ -290,8 +290,10 @@ func main() {
     dataMap := map[string]string{"user" : "alex"}
     dataMapString, _ := json.Marshal(dataMap)
     // dataMapString: {"user":"alex"}
+    
     dataMapBase64 := b64.StdEncoding.EncodeToString([]byte(dataMapString))
     // dataMapBase64: eyJ1c2VyIjoiYWxleCJ9
+    
     journalEvent.EventData.Base64JsonMap = dataMapBase64
     
     // Encode JournalEvent to Json-Base64-UrlEscaped string.
