@@ -233,7 +233,6 @@ import (
   "net/url"
 )
 
-
 type JournalEvent struct {
   EventId     string    `json:"event_id"`
   Maid        string    `json:"maid"`
