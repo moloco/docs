@@ -248,12 +248,13 @@ type EventData struct {
   Language    string  `json:"language"`
   OsVersion   string  `json:"os_version"`
   SdkVersion  string  `json:"sdk_version"`
-  // etc.
+  // include all other event data fields here
 }
 
 const (
-  p_login = 32
   p_event_url_format = "https://tracker-us.adsmoloco.com/tracking/post_p?p=%s"
+  p_login = 32
+  // define other event types here
 )
 
 func main() {
