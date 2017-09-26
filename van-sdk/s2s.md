@@ -314,10 +314,10 @@ func main() {
 ```Java
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.net.Uri;
-import android.util.Base64;
-import com.moloco.van.model.EventData;
-import com.moloco.van.model.JournalEvent;
+import java.net.URI;
+import java.util.Base64;
+import EventData;     // import from above proto conversion
+import JournalEvent;  // import from above proto conversion
 
 public static String encodeJournalEventToBase64JsonUrl(JournalEvent journalEvent) {
     String encodedObject = "";
@@ -349,7 +349,7 @@ public class JsonUtils {
             jsonObj.put("custom_event_name", eventData.getCustomEventName());
             return jsonObj;
         } catch (JSONException e) {
-            Log.w(Constants.LOG, "Failed to encode EventData to json:" + e.getMessage());
+            // Handle exception here
         }
         return null;
     }
@@ -365,7 +365,7 @@ public class JsonUtils {
             jsonObj.put("event_type", journalEvent.getEventType());
             return jsonObj.toString();
         } catch (JSONException e) {
-            Log.w(Constants.LOG, "Failed to encode JournalEvent to json:" + e.getMessage());
+            // Handle exception here
         }
         return null;
     }
