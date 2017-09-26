@@ -30,7 +30,7 @@ O-Event
 P-Event
 > https://tracker-us.adsmoloco.com/tracking/post_p?p=%s
 
-Where `%s` part is a *json-base64-url-encoded* string value of a `JournalEvent` instance, which will be described below.
+Where `%s` part is a *base64-url-encoded-json* string value of a `JournalEvent` instance, which will be described below.
 
 #### O-Event
 This event type is used for an (good) 'outcome' of ad-event. In our analogy, an event of this type is like registration of a company.
@@ -258,8 +258,8 @@ type EventData struct {
 }
 
 const (
-  p_event_url_format = "https://tracker-us.adsmoloco.com/tracking/post_p?p=%s"
-  p_login = 32
+  pEventUrlFormat = "https://tracker-us.adsmoloco.com/tracking/post_p?p=%s"
+  pLogin = 32
   // define other event types here
 )
 
@@ -268,7 +268,7 @@ func main() {
       EventId:    "05B07781-ADB4-4EBB-837E-443F4F1BC29A",
       Maid:       "a:B903FC20-C5A9-479F-8FFA-87273246D96a",
       ProductId:  "moloco_van_s2s_testing_app",
-      EventType:  p_login,
+      EventType:  pLogin,
       EventData:  EventData{
         IpAddress:        "175.203.211.101",
         DeviceType:       1,
@@ -305,8 +305,63 @@ func main() {
     escapedString := url.QueryEscape(encodedString)
     // escapedString: eyJldmVudF9pZCI6IjA1QjA3NzgxLUFEQjQtNEVCQi04MzdFLTQ0M0Y0RjFCQzI5QSIsIm1haWQiOiJhOk...
 
-    finalURL := fmt.Sprintf(p_event_url_format, escapedString)
+    finalURL := fmt.Sprintf(pEventUrlFormat, escapedString)
     // finalURL: https://tracker-us.adsmoloco.com/tracking/post_p?p=eyJldmVudF9pZCI6IjA1QjA3NzgxLUFE...
+}
+```
+
+### Java
+```Java
+public static String encodeJournalEventToBase64JsonUrl(JournalEvent journalEvent) {
+    String encodedObject = "";
+    try {
+        encodedObject = Uri.encode(
+                          Base64.encodeToString(
+                            JsonUtils.toJson(journalEvent).getBytes("UTF-8"), Base64.DEFAULT));
+    } catch (Exception e) {
+        Log.w(Constants.LOG, "Failed to encode journal event: " + journalEvent.toString() + ", error:" + e);
+    }
+    return encodedObject;
+}
+
+public class JsonUtils {
+    public static JSONObject eventDataToJsonObj(EventData eventData) {
+        JSONObject jsonObj = new JSONObject();
+        try {
+            jsonObj.put("ip_address", eventData.getIpAddress());
+            jsonObj.put("device_model", eventData.getDeviceModel());
+            jsonObj.put("carrier", eventData.getCarrier());
+            jsonObj.put("country_code", eventData.getCountryCode());
+            jsonObj.put("language", eventData.getLanguage());
+            jsonObj.put("os_version", eventData.getOsVersion());
+            jsonObj.put("app_version", eventData.getAppVersion());
+            jsonObj.put("sdk_version", eventData.getSdkVersion());
+            jsonObj.put("device_type", eventData.getDeviceType());
+            jsonObj.put("connection_type", eventData.getConnectionType());
+            jsonObj.put("base64_json_map", eventData.getBase64JsonMap());
+            jsonObj.put("custom_event_name", eventData.getCustomEventName());
+            return jsonObj;
+        } catch (JSONException e) {
+            Log.w(Constants.LOG, "Failed to encode EventData to json:" + e.getMessage());
+        }
+        return null;
+    }
+
+    public static String toJson(JournalEvent journalEvent) {
+        JSONObject jsonObj = new JSONObject();
+        try {
+            jsonObj.put("event_id", journalEvent.getEventId());
+            jsonObj.put("maid", journalEvent.getMaid());
+            jsonObj.put("product_id", journalEvent.getProductId());
+            jsonObj.put("happen_at_ns", journalEvent.getHappenAtNs());
+            jsonObj.put("event_data", eventDataToJsonObj(journalEvent.getEventData()));
+            jsonObj.put("event_type", journalEvent.getEventType());
+            return jsonObj.toString();
+        } catch (JSONException e) {
+            Log.w(Constants.LOG, "Failed to encode JournalEvent to json:" + e.getMessage());
+        }
+        return null;
+    }
 }
 ```
 
