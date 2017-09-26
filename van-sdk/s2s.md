@@ -312,6 +312,13 @@ func main() {
 
 ### Java
 ```Java
+import org.json.JSONException;
+import org.json.JSONObject;
+import android.net.Uri;
+import android.util.Base64;
+import com.moloco.van.model.EventData;
+import com.moloco.van.model.JournalEvent;
+
 public static String encodeJournalEventToBase64JsonUrl(JournalEvent journalEvent) {
     String encodedObject = "";
     try {
@@ -319,7 +326,7 @@ public static String encodeJournalEventToBase64JsonUrl(JournalEvent journalEvent
                           Base64.encodeToString(
                             JsonUtils.toJson(journalEvent).getBytes("UTF-8"), Base64.DEFAULT));
     } catch (Exception e) {
-        Log.w(Constants.LOG, "Failed to encode journal event: " + journalEvent.toString() + ", error:" + e);
+      // Handle exception here
     }
     return encodedObject;
 }
