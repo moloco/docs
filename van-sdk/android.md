@@ -26,7 +26,7 @@ Expand the project tree by clicking the triangle next to VanSampleApp (or whatev
 
 Open the `project level build.gradle` file and confirm that the code reads as follows:
 
-```properties
+```gradle
 // Top level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
    repositories {
@@ -48,8 +48,8 @@ allprojects {
   
 Now, open the `application level build.gradle` file (located in the app folder). Edit the code so it includes the following repositories and dependencies.
 
-```java
-apply plugin: 'com.android.application'
+```gradle
+apply plugin: "com.android.application"
 
 android {
    compileSdkVersion 25
@@ -71,17 +71,17 @@ android {
 }
 
 repositories {
-   maven { url 'http://artifacts.adsmoloco.com/artifactory/libs-release-local/' }
+   maven { url "http://artifacts.adsmoloco.com/artifactory/libs-release-local/" }
 }
 
 dependencies {
    compile fileTree(dir: 'libs', include: ['*.jar'])
-   compile 'com.android.support:appcompat-v7:25.1.1'
-   compile 'com.android.support:support-v4:25.1.1'
-   compile 'com.android.support:support-annotations:25.1.1'
-   compile 'com.google.android.gms:play-services-ads:10.0.1'
-   compile 'com.android.volley:volley:1.0.0'
-   compile 'com.moloco.sdk:van-sdk:2.0.0'
+   compile "com.android.support:appcompat-v7:25.1.1"
+   compile "com.android.support:support-v4:25.1.1"
+   compile "com.android.support:support-annotations:25.1.1"
+   compile "com.google.android.gms:play-services-ads:10.0.1"
+   compile "com.android.volley:volley:1.0.0"
+   compile "com.moloco.sdk:van-sdk:2.0.0"
 }
 ```
 
