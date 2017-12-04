@@ -144,7 +144,7 @@ new ApiCallback() {
 ```
 
 ### SendEvent 함수
-유저의 이벤트를 기록해주는 `sendEvent()` 함수는, 앞서 말한 3가지의 변수를 받습니다. `MolocoVAN.sendEvent()` 함수에는 이벤트 종류 (`EventType` enum), 추가 데이터 (`HashMap<String, Object)`, 그리고 API 콜백이 변수로 들어갑니다.
+유저의 이벤트를 기록해주는 `sendEvent()` 함수는, 앞서 말한 3가지의 변수를 받습니다. `MolocoVAN.sendEvent()` 함수에는 이벤트 종류 (`EventType` enum), 추가 데이터 (`HashMap<String, Object`), 그리고 API 콜백이 변수로 들어갑니다.
 
 ```java
 MolocoVAN.sendEvent(Constants.EventType.PURCHASE, dataMap, apiCallback)
