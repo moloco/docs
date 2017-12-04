@@ -1,4 +1,3 @@
-
 # Moloco VAN SDK - iOS
 Moloco VAN SDK provides session and event tracking for mobile applications to facilitate advertising for app publishers.
 
