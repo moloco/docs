@@ -6,7 +6,7 @@ Moloco VAN SDK 2.0 은 모로코 서버를 통해 앱에 유입된 설치, 실�
 Moloco VAN SDK 2.0 은 API 9 이상을 사용하는 안드로이드 기기에 적용 가능합니다. Moloco VAN SDK에 연동하기 위해서는, `Product ID` (앱 아이디) 와 `Api Key` (API 키) 를 모로코에서 부여받아야 합니다. 해당 정보가 없으시다면 [모로코](mailto:support@molocoads.com)로 연락주시기 바랍니다.
 
 ## 설치가이드
-본 문서의 설치 가이드는 Android Studio를 기반으로 하였으며, Android Studio 2.3.3 버젼의 #AI-162.4069837 빌드를 사용하였습니다. 만일 다른 버젼과 빌드를 사용하여 문제가 있을 경우, [모로코](mailto:support@molocoads.com)로 연락주시가 바랍니다.
+본 문서의 설치 가이드는 Android Studio를 기반으로 하였으며, Android Studio 2.3.3 버젼의 #AI-162.4069837 빌드를 사용하였습니다. 만일 다른 버젼과 빌드를 사용하여 문제가 있을 경우, [모로코](mailto:support@molocoads.com)로 연락주시기 바랍니다.
   
 먼저, Android Studio 를 실행하고 `Start a new Android project`를 클릭합니다. 예시로, 프로젝트 이름을 `VanSampleApp`라고 명칭하겠습니다. `Target Android Devices` 스크린에서, **Next** 를 누를 후, `default` 설정을 클릭합니다. 다음 화면에서는 예시로 `Empty Activity`를 눌러줍니다.
 
