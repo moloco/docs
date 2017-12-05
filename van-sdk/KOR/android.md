@@ -1,6 +1,6 @@
 
 # Moloco VAN SDK 2.0 - Android
-Moloco VAN SDK 2.0 은 모로코 서버를 통하여 앱에 유입된 설치, 실행, 인앱이벤트 및 리텐션 트래킹 기능을 제공합니다.
+Moloco VAN SDK 2.0 은 모로코 서버를 통하여 안드로이드앱에 유입된 설치, 실행, 인앱이벤트 및 리텐션 트래킹 기능을 제공합니다.
 
 ## 연동조건
 Moloco VAN SDK 2.0 은 API 9 이상의 안드로이드 기기에 적용할 수 있습니다. Moloco VAN SDK를 사용하여 App과 Moloco 서버를 연동시키려면 모로코에서 `Product ID` (앱 아이디) 와 `Api Key`를 부여받아야 합니다. 해당 정보가 필요한 경우 [모로코](mailto:support@molocoads.com)로 연락하시기 바랍니다.
