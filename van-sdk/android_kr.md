@@ -8,7 +8,7 @@ Moloco VAN SDK 2.0 은 API 9 이상의 안드로이드 기기에 적용할 수 �
 ## 설치가이드
 본 설치 가이드는 Android Studio에 기반하며, Android Studio 2.3.3 버젼의 #AI-162.4069837 빌드에서 동작을 확인하였습니다. 만일 다른 버젼과 빌드를 사용하여 문제가 있을 경우, [모로코](mailto:support@molocoads.com)로 문의하십시오.
 
-먼저, Android Studio 를 실행하고 `Start a new Android project`를 선택하십시오. 본 문서에서는 프로젝트 이름을 `VanSampleApp`라고 명칭하겠습니다. `Target Android Devices` 스크린에서, **Next** 를 누를 후, `default` 설정을 선택하십시오.
+먼저, Android Studio 를 실행하고 `Start a new Android project`를 선택하십시오. 본 문서에서는 프로젝트 이름을 `VanSampleApp`이라고 명칭하겠습니다. `Target Android Devices` 스크린에서, **Next** 를 누를 후, `default` 설정을 선택하십시오.
 
 ![alt text](https://storage.googleapis.com/vansdk/android/1.png)
 
