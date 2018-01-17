@@ -1,13 +1,13 @@
 # Moloco VAN SDK - iOS
-Moloco VAN SDK 2.0 은 모로코 서버를 통하여 IOS앱에 유입된 설치, 실행, 인앱이벤트 및 리텐션 트래킹 기능을 제공합니다.
+Moloco VAN SDK 는 모로코 서버를 통하여 IOS앱에 유입된 설치, 실행, 인앱이벤트 및 리텐션 트래킹 기능을 제공합니다.
 
 ## 연동조건
-Moloco VAN SDK 2.0 는 iOS 버젼 **8.0** (target version) 이상 기기에 적용 가능합니다. 본 SDK는 `Object-C` 와 `Swift` 두 언어를 지원합니다.
+Moloco VAN SDK 2.1.1 는 iOS 버젼 **8.0** (target version) 이상 기기에 적용 가능합니다. 본 SDK는 `Object-C` 와 `Swift` 두 언어를 지원합니다.
 
 Moloco VAN SDK를 사용하여 App과 Moloco 서버를 연동시키려면 모로코에서 `Product ID` (앱 아이디) 와 `Api Key`를 부여받아야 합니다. 해당 정보가 필요한 경우 [모로코](mailto:support@molocoads.com)로 문의하십시오.
 
-Moloco VAN SDK 2.0 은 아래의 주소에서 받을 수 있습니다.
-https://github.com/moloco/VANIosLibrary/archive/2.0.zip (191KB)
+Moloco VAN SDK 2.1.1 은 아래의 주소에서 받을 수 있습니다.
+https://github.com/moloco/VANIosLibrary/archive/2.1.zip (191KB)
 
 
 ## 설치가이드
@@ -19,7 +19,7 @@ https://github.com/moloco/VANIosLibrary/archive/2.0.zip (191KB)
 ## 연동가이드 - Objective C
 연동을 위해서는 가장 먼저 위에서 다운로드 받은 `MolocoVANSDK.framework` 파일의 압축을 풀고, 해당 폴더의 하위 파일들을 IOS 어플리케이션 프로젝트의 폴더 안으로 이동시켜야 합니다.
 
-위 파일들을 Moloco VAN SDK 2.0 라이브러리를 연동하고자 하는 어플리케이션 프로젝트에 다음 두 방법 중 하나로 추가하십시오.
+위 파일들을 Moloco VAN SDK 라이브러리를 연동하고자 하는 어플리케이션 프로젝트에 다음 두 방법 중 하나로 추가하십시오.
 
 - Xcode 에서 해당 프로젝트애 대하여 오른쪽 클릭 후, Add Files to (프로젝트 이름) 을 선택한 후  MolocoVANSDK.framework 를 선택
 - 드래그 앤 드롭으로 MolocoVANSDK.framework 폴더를 Xcode 프로젝트에 추가
@@ -88,7 +88,7 @@ https://github.com/moloco/VANIosLibrary/archive/2.0.zip (191KB)
 ## 연동가이드 - Swift
 연동을 위해서는 가장 먼저 위에서 다운로드 받은 `MolocoVANSDK.framework` 파일의 압축을 풀고, 해당 폴더의 하위 파일들을 IOS 어플리케이션 프로젝트의 폴더 안으로 이동시켜야 합니다.
 
-위 파일들을 Moloco VAN SDK 2.0 라이브러리를 연동하고자 하는 어플리케이션 프로젝트에 다음 두 방법 중 하나로 추가하십시오.
+위 파일들을 Moloco VAN SDK 라이브러리를 연동하고자 하는 어플리케이션 프로젝트에 다음 두 방법 중 하나로 추가하십시오.
 
 - Xcode 에서 해당 프로젝트애 대하여 오른쪽 클릭 후, Add Files to (프로젝트 이름) 을 선택한 후  MolocoVANSDK.framework 를 선택
 - 드래그 앤 드롭으로 MolocoVANSDK.framework 폴더를 Xcode 프로젝트에 추가

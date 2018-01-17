@@ -1,9 +1,9 @@
 
-# Moloco VAN SDK 2.0 - Android
-Moloco VAN SDK 2.0 은 모로코 서버를 통하여 안드로이드앱에 유입된 설치, 실행, 인앱이벤트 및 리텐션 트래킹 기능을 제공합니다.
+# Moloco VAN SDK - Android
+Moloco VAN SDK 는 모로코 서버를 통하여 안드로이드앱에 유입된 설치, 실행, 인앱이벤트 및 리텐션 트래킹 기능을 제공합니다.
 
 ## 연동조건
-Moloco VAN SDK 2.0 은 API 9 이상의 안드로이드 기기에 적용할 수 있습니다. Moloco VAN SDK를 사용하여 App과 Moloco 서버를 연동시키려면 모로코에서 `Product ID` (앱 아이디) 와 `Api Key`를 부여받아야 합니다. 해당 정보가 필요한 경우 [모로코](mailto:support@molocoads.com)로 문의하십시오.
+Moloco VAN SDK 2.1.1 은 API 9 이상의 안드로이드 기기에 적용할 수 있습니다. Moloco VAN SDK를 사용하여 App과 Moloco 서버를 연동시키려면 모로코에서 `Product ID` (앱 아이디) 와 `Api Key`를 부여받아야 합니다. 해당 정보가 필요한 경우 [모로코](mailto:support@molocoads.com)로 문의하십시오.
 
 ## 설치가이드
 본 설치 가이드는 Android Studio에 기반하며, Android Studio 2.3.3 버젼의 #AI-162.4069837 빌드에서 동작을 확인하였습니다. 만일 다른 버젼과 빌드를 사용하여 문제가 있을 경우, [모로코](mailto:support@molocoads.com)로 문의하십시오.
@@ -70,17 +70,17 @@ android {
 
 repositories {
    maven { url "http://artifacts.adsmoloco.com/artifactory/libs-release-local/" }
+   maven { url "https://maven.google.com" }
 }
 
 dependencies {
    compile fileTree(dir: 'libs', include: ['*.jar'])
-   compile "com.android.support:appcompat-v7:25.1.1"
-   compile "com.android.support:support-v4:25.1.1"
-   compile "com.android.support:support-annotations:25.1.1"
-   compile "com.google.android.gms:play-services-ads:10.0.1"
+   compile "com.google.android.gms:play-services-ads:11.0.4"
+   compile 'com.android.installreferrer:installreferrer:1.0'
    compile "com.android.volley:volley:1.0.0"
-   compile "com.moloco.sdk:van-sdk:2.0.0"
+   compile "com.moloco.sdk:van-sdk:2.1.1"
 }
+
 ```
 
 이로써, Moloco VAN SDK의 라이브러리를 앱에서 사용할 수 있습니다.
