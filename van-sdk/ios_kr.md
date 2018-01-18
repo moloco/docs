@@ -6,8 +6,9 @@ Moloco VAN SDK 2.1.1 는 iOS 버젼 **8.0** (target version) 이상 기기에 �
 
 Moloco VAN SDK를 사용하여 App과 Moloco 서버를 연동시키려면 모로코에서 `Product ID` (앱 아이디) 와 `Api Key`를 부여받아야 합니다. 해당 정보가 필요한 경우 [모로코](mailto:support@molocoads.com)로 문의하십시오.
 
-Moloco VAN SDK 2.1.1 은 아래의 주소에서 받을 수 있습니다.
-https://github.com/moloco/VANIosLibrary/archive/2.1.zip (191KB)
+Moloco VAN SDK 2.1.1 은 아래의 주소에서 받을 수 있습니다:
+
+[Moloco VAN SDK 2.1.1 다운로드](https://github.com/moloco/VANIosLibrary/archive/master.zip)
 
 
 ## 설치가이드
