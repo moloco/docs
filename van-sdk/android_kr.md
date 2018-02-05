@@ -78,7 +78,7 @@ repositories {
 dependencies {
    compile fileTree(dir: 'libs', include: ['*.jar'])
    compile "com.google.android.gms:play-services-base:11.8.0"
-   compile "com.google.android.gms:play-services-ads:11.0.4"
+   compile "com.google.android.gms:play-services-ads:11.8.0"
    compile "com.android.installreferrer:installreferrer:1.0"
    compile "com.android.volley:volley:1.0.0"
    compile "com.moloco.sdk:van-sdk:2.1.2"
