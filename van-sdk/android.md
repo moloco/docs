@@ -3,11 +3,11 @@
 Moloco VAN SDK provides session and event tracking for mobile applications to facilitate advertising for app publishers.
 
 ## Prerequisites
-Moloco VAN SDK 2.1.1 is compatible for devices running Android **API 9** and above. Integrating with Moloco SDK requires a `Product ID` and `Api Key` from Moloco. Contact [Moloco](mailto:support@molocoads.com) if you are missing either value.
+Moloco VAN SDK 2.1.2 is compatible for devices running Android **API 14** and above. Integrating with Moloco SDK requires a `Product ID` and `Api Key` from Moloco. Contact [Moloco](mailto:support@molocoads.com) if you are missing either value.
 
 ## Installation
 
-This section contains instructions for installing VAN SDK using Android Studio. Moloco VAN SDK is built with Android Studio 2.3.3 Build #AI-162.4069837. If you’re using a different version and have a problem using VAN SDK, please contact [Moloco](mailto:support@molocoads.com).
+This section contains instructions for installing VAN SDK using Android Studio. Moloco VAN SDK is built with Android Studio 3.0.1 Build #AI-171.4443003. If you’re using a different version and have a problem using VAN SDK, please contact [Moloco](mailto:support@molocoads.com).
   
 First, launch your Android Studio, and click `Start a new Android project`. We will name it as `VanSampleApp`. On the `Target Android Devices` screen you can click **Next** to choose the defaults. On the next screen, let’s choose `Empty Activity` for this tutorial.
 
@@ -30,9 +30,10 @@ Open the `project level build.gradle` file and confirm that the code reads as fo
 buildscript {
    repositories {
        jcenter()
+       google()
    }
    dependencies {
-       classpath 'com.android.tools.build:gradle:2.3.3'
+       classpath 'com.android.tools.build:gradle:3.0.1'
        // NOTE: Do not place your application dependencies here; they belong
        // in the individual module build.gradle files
    }
@@ -41,6 +42,7 @@ buildscript {
 allprojects {
    repositories {
        jcenter()
+       google()
    }
 }
 ```
@@ -51,13 +53,13 @@ Now, open the `application level build.gradle` file (located in the app folder).
 apply plugin: "com.android.application"
 
 android {
-   compileSdkVersion 25
-   buildToolsVersion "25.0.0"
+   compileSdkVersion 26
+   buildToolsVersion "26.0.2"
 
    defaultConfig {
        applicationId "com.moloco.VanSampleApp"
-       minSdkVersion 9
-       targetSdkVersion 25
+       minSdkVersion 14
+       targetSdkVersion 26
        versionCode 1
        versionName "1.0"
    }
@@ -76,10 +78,11 @@ repositories {
 
 dependencies {
    compile fileTree(dir: 'libs', include: ['*.jar'])
-   compile "com.google.android.gms:play-services-ads:11.0.4"
-   compile 'com.android.installreferrer:installreferrer:1.0'
+   compile "com.google.android.gms:play-services-base:11.8.0"
+   compile "com.google.android.gms:play-services-ads:11.8.0"
+   compile "com.android.installreferrer:installreferrer:1.0"
    compile "com.android.volley:volley:1.0.0"
-   compile "com.moloco.sdk:van-sdk:2.1.1"
+   compile "com.moloco.sdk:van-sdk:2.1.2"
 }
 ```
 
