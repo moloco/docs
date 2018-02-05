@@ -3,10 +3,10 @@
 Moloco VAN SDK 는 모로코 서버를 통하여 안드로이드앱에 유입된 설치, 실행, 인앱이벤트 및 리텐션 트래킹 기능을 제공합니다.
 
 ## 연동조건
-Moloco VAN SDK 2.1.1 은 API 9 이상의 안드로이드 기기에 적용할 수 있습니다. Moloco VAN SDK를 사용하여 App과 Moloco 서버를 연동시키려면 모로코에서 `Product ID` (앱 아이디) 와 `Api Key`를 부여받아야 합니다. 해당 정보가 필요한 경우 [모로코](mailto:support@molocoads.com)로 문의하십시오.
+Moloco VAN SDK 2.1.2는 API 14 이상의 안드로이드 기기에 적용할 수 있습니다. Moloco VAN SDK를 사용하여 App과 Moloco 서버를 연동시키려면 모로코에서 `Product ID` (앱 아이디) 와 `Api Key`를 부여받아야 합니다. 해당 정보가 필요한 경우 [모로코](mailto:support@molocoads.com)로 문의하십시오.
 
 ## 설치가이드
-본 설치 가이드는 Android Studio에 기반하며, Android Studio 2.3.3 버젼의 #AI-162.4069837 빌드에서 동작을 확인하였습니다. 만일 다른 버젼과 빌드를 사용하여 문제가 있을 경우, [모로코](mailto:support@molocoads.com)로 문의하십시오.
+본 설치 가이드는 Android Studio에 기반하며, Android Studio 3.0.1 버젼의 #AI-171.4443003 빌드에서 동작을 확인하였습니다. 만일 다른 버젼과 빌드를 사용하여 문제가 있을 경우, [모로코](mailto:support@molocoads.com)로 문의하십시오.
 
 먼저, Android Studio 를 실행하고 `Start a new Android project`를 선택하십시오. 본 문서에서는 프로젝트 이름을 `VanSampleApp`이라고 명칭하겠습니다. `Target Android Devices` 스크린에서, **Next** 를 누를 후, `default` 설정을 선택하십시오.
 
@@ -29,9 +29,10 @@ Moloco VAN SDK 2.1.1 은 API 9 이상의 안드로이드 기기에 적용할 수
 buildscript {
    repositories {
        jcenter()
+       google()
    }
    dependencies {
-       classpath 'com.android.tools.build:gradle:2.3.3'
+       classpath 'com.android.tools.build:gradle:3.0.1'
        // NOTE: Do not place your application dependencies here; they belong
        // in the individual module build.gradle files
    }
@@ -40,6 +41,7 @@ buildscript {
 allprojects {
    repositories {
        jcenter()
+       google()
    }
 }
 ```
@@ -50,13 +52,13 @@ allprojects {
 apply plugin: "com.android.application"
 
 android {
-   compileSdkVersion 25
-   buildToolsVersion "25.0.0"
+   compileSdkVersion 26
+   buildToolsVersion "26.0.2"
 
    defaultConfig {
        applicationId "com.moloco.VanSampleApp"
-       minSdkVersion 9
-       targetSdkVersion 25
+       minSdkVersion 14
+       targetSdkVersion 26
        versionCode 1
        versionName "1.0"
    }
@@ -75,10 +77,11 @@ repositories {
 
 dependencies {
    compile fileTree(dir: 'libs', include: ['*.jar'])
+   compile "com.google.android.gms:play-services-base:11.8.0"
    compile "com.google.android.gms:play-services-ads:11.0.4"
-   compile 'com.android.installreferrer:installreferrer:1.0'
+   compile "com.android.installreferrer:installreferrer:1.0"
    compile "com.android.volley:volley:1.0.0"
-   compile "com.moloco.sdk:van-sdk:2.1.1"
+   compile "com.moloco.sdk:van-sdk:2.1.2"
 }
 
 ```
