@@ -2,11 +2,11 @@
 Moloco VAN SDK provides session and event tracking for mobile applications to facilitate advertising for app publishers.
 
 ## Prerequisites
-You will need to download the following library to install Moloco VAN SDK 2.1.1 for iOS:
+You will need to download the following library to install Moloco VAN SDK 2.1.2 for iOS:
 
-[Download Moloco VAN SDK 2.1.1](https://github.com/moloco/VANIosLibrary/archive/master.zip)
+[Download Moloco VAN SDK 2.1.2](https://github.com/moloco/VANIosLibrary/archive/master.zip)
 
-Moloco VAN SDK 2.1.1 is compatible for devices running iOS **8.0** and above (target version). To use the Moloco VAN SDK with Object-C or Swift, you must set the deployment target version to at least 8.0.
+Moloco VAN SDK 2.1.2 is compatible for devices running iOS **8.0** and above (target version). To use the Moloco VAN SDK with Object-C or Swift, you must set the deployment target version to at least 8.0.
 
 Integrating with Moloco SDK requires a `Product ID` and `Api Key` from Moloco. Contact [Moloco](mailto:support@molocoads.com) if you do not have these credentials.
 
