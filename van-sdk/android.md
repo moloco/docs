@@ -3,7 +3,7 @@
 Moloco VAN SDK provides session and event tracking for mobile applications to facilitate advertising for app publishers.
 
 ## Prerequisites
-Moloco VAN SDK 2.1.2 is compatible for devices running Android **API 14** and above. Integrating with Moloco SDK requires a `Product ID` and `Api Key` from Moloco. Contact [Moloco](mailto:support@molocoads.com) if you are missing either value.
+Moloco VAN SDK 2.1.3 is compatible for devices running Android **API 14** and above. Integrating with Moloco SDK requires a `Product ID` and `Api Key` from Moloco. Contact [Moloco](mailto:support@molocoads.com) if you are missing either value.
 
 ## Installation
 
@@ -82,7 +82,7 @@ dependencies {
    compile "com.google.android.gms:play-services-ads:11.8.0"
    compile "com.android.installreferrer:installreferrer:1.0"
    compile "com.android.volley:volley:1.0.0"
-   compile "com.moloco.sdk:van-sdk:2.1.2"
+   compile "com.moloco.sdk:van-sdk:2.1.3"
 }
 ```
 
