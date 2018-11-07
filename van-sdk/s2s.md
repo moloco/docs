@@ -202,7 +202,7 @@ To build the string value above, please follow the following procedure:
   - insert data fields as `key-value` pairs (e.g., `dataMap["username"] = "alex"`)
   - encode the instance object as `json` string value.
   - encode the `json` string value with `standard base64` encoding.
-  - add the finalized string value to `base64_json_string` field of the `EventData` instance built in (3).
+  - add the finalized string value to `base64_json_map` field of the `EventData` instance built in (3).
 
 5. Construct an instance of `JournalEvent` with the following fields:
   - `event_id`, `maid`, `product_id`, `event_data` (3), `event_type` (1), `happen_at_ns`.
