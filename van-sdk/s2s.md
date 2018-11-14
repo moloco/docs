@@ -396,7 +396,7 @@ Request:
     X-Forwarded-Proto: https
     Connection: Keep-Alive
     Postman-Token: 55f6ae6d-f65d-484e-8712-a075c70ad826
-    Api-Key: 111ad1a11d11dd1b1111111111111e1z
+    Api-Key: 099ad4a40d75dd0b8151630486513e9z
     Accept: */*
     Content-Length: 0
     X-Cloud-Trace-Context: 2e2c895f6c0db487e38ce2617a5f4a06/1384854340696844375
@@ -408,9 +408,9 @@ Request:
 PJournalEvent: json-marshaled for readability
 {
     "event_id": "05B07781-ADB4-4EBB-837E-443F4F1BC29A",
-    "maid": "i:B903FC20-C5A9-479F-8FFA-87273246D96a",
-    "product_id": "moloco_van_s2s_test_app",
-    "event_type": 32,
+    "maid": "i:B903FC20-C5A9-479F-8FFA-87273246D967",
+    "product_id": "moloco_testing_app_ios",
+    "event_type": 100,
     "event_data": {
       "ip_address": "172.30.1.55",
       "device_type": 1,
@@ -422,8 +422,8 @@ PJournalEvent: json-marshaled for readability
       "os_version": "10.3.3",
       "app_version": "1.4(1)",
       "sdk_version": "2.0.0",
-      "base64_json_map": "eyJsYXRpdHVkZSI6MC4xMjM5MjMsInVzZXJuYW1lIjoibW9sb2NvIiwibG9uZ2l0dWRlIjowLjUz\nNDYxMjN9\n",
-      "custom_event_name": "custom_click_test_from_myMobileApp"
+      "base64_json_map": "eyJsYXRpdHVkZSI6MC4xMjM5MjMsInVzZXJuYW1lIjoibW9sb2NvIiwibG9uZ2l0dWRlIjowLjUzNDYxMjN9",
+      "custom_event_name": "request_ad_from_adsdisplay_ios"
     },
     "happen_at_ns": 1504490867700716000
   }
