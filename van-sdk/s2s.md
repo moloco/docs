@@ -131,8 +131,6 @@ string custom_event_name = 12;
 ```
 enum OEventType {
     O_UNKNOWN = 0;
-    O_INSTALL = 11;
-    O_OPEN = 12;
     O_SESSION = 13;
 }
 ```
