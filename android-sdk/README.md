@@ -137,7 +137,7 @@ protected void onCreate(Bundle savedInstanceState) {
 ### Initialize MolocoView
 
 ```
-MolocoView mMolocoView = findViewById(/* Id of your view. ex) R.id.banner_molocoview*/ );
+MolocoView mMolocoView = findViewById( /* Id of your view. ex) R.id.banner_molocoview */ );
 mMolocoView.setWidthPixel(720);
 mMolocoView.setHeightPixel(160);
 ```
@@ -161,8 +161,8 @@ mMolocoView.loadAd();
 mMolocoView.setBannerAdListener(this);
 ```
 
-Now you are ready use **Moloco Android** for Android devices! 
+Now you are ready use **Moloco Android SDK** for Android devices!
 
 Once you complete integration, please work with your Moloco contact to verify receipt of the session and other events from Android server.
 
-If there is any question regarding with Moloco Android Android SDK integration, please contact [Moloco](mailto:support@molocoads.com).
+If there is any question regarding with Moloco Android SDK integration, please contact [Moloco](mailto:support@molocoads.com).
