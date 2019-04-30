@@ -4,7 +4,7 @@ Moloco Android SDK provides ad serving for mobile applications to facilitate adv
 
 
 ## Prerequisites
-Moloco Android SDK 0.0.1 is compatible with all Android devices running Android **API 14** and above.
+Moloco Android SDK 1.0.0 is compatible with all Android devices running Android **API 16** and above.
 
 ## Installation
 
@@ -80,8 +80,8 @@ repositories {
 
 dependencies {
    compile fileTree(dir: 'libs', include: ['*.jar'])
-   implementation 'com.moloco.sdk:moloco-sdk-base:0.0.1@aar'
-   implementation 'com.moloco.sdk:moloco-sdk-banner:0.0.1@aar'
+   implementation 'com.moloco.sdk:moloco-sdk-base:1.0.0@aar'
+   implementation 'com.moloco.sdk:moloco-sdk-banner:1.0.0@aar'
 
    implementation 'com.squareup.retrofit2:retrofit:2.0.2'
    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
@@ -143,7 +143,7 @@ mMolocoView.setHeightPixel(160);
 ```
 
 ### SdkConfiguration
-Initialize a SdkConfiguration with a LogLevel (INFO or DEBUG).
+Initialize SdkConfiguration with a LogLevel (INFO or DEBUG).
 
 ```
 LogLevel logLevel = INFO; // or DEBUG
@@ -152,7 +152,7 @@ Moloco.initializeSdk(this, sdkConfiguration);
 ```
 
 ###  Load an Ad with an ad unit id.
-Initialization requires a `AdUnitID` provided by Moloco. Please contact [Moloco](mailto:support@molocoads.com) if you need an `AdUnit ID`.
+Initialization requires `AdUnitID` provided by Moloco. Please contact [Moloco](mailto:support@molocoads.com) if you need `AdUnit ID`.
 
 ```
 String adUnitId = "your_ad_unit_id";
