@@ -56,7 +56,7 @@ android {
    buildToolsVersion "28.0.0"
 
    defaultConfig {
-       applicationId "com.moloco.molocosampleApp"
+       applicationId "com.moloco.molocosampleapp"
        minSdkVersion 16
        targetSdkVersion 28
        versionCode 1
