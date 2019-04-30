@@ -1,16 +1,16 @@
 
-# Moloco Android SDK - Android
+# Moloco Android SDK
 Moloco Android SDK provides ad serving for mobile applications to facilitate advertising for app publishers.
 
 
 ## Prerequisites
-Moloco Android SDK 0.0.1 is compatible for devices running Android **API 9** and above.
+Moloco Android SDK 0.0.1 is compatible with all Android devices running Android **API 14** and above.
 
 ## Installation
 
 This section contains instructions for installing Android SDK using Android Studio. Moloco Android SDK is built with Android Studio 3.4 Build #AI-183.5429.30.34.5452501. If you’re using a different version and have a problem using Android SDK, please contact [Moloco](mailto:support@molocoads.com).
 
-First, launch your Android Studio, and click `Start a new Android project`. We will name it as `MolocoSampleApp`. On the `Target Android Devices` screen you can click **Next** to choose the defaults. On the next screen, let’s choose `Empty Activity` for this tutorial.
+First, launch your Android Studio, and click `Start a new Android project`. We will name it as `MolocoSampleApp`. On the `Target Android Devices` screen you can click **Next** default. On the next screen, let’s choose `Empty Activity` for this tutorial.
 
 ![alt text](https://storage.googleapis.com/moloco-sdk/android/2.png)
 
@@ -137,7 +137,7 @@ protected void onCreate(Bundle savedInstanceState) {
 ### Initialize MolocoView
 
 ```
-MolocoView mMolocoView = findViewById( /* Id of your view. ex) R.id.banner_molocoview */ );
+MolocoView mMolocoView = findViewById( /* Id of your view. e.g., R.id.banner_molocoview */ );
 mMolocoView.setWidthPixel(720);
 mMolocoView.setHeightPixel(160);
 ```
@@ -152,7 +152,7 @@ Moloco.initializeSdk(this, sdkConfiguration);
 ```
 
 ###  Load an Ad with an ad unit id.
-Initialization requires a `AdUnit ID` provided by Moloco. Please contact [Moloco](mailto:support@molocoads.com) if you need an `AdUnit ID`.
+Initialization requires a `AdUnitID` provided by Moloco. Please contact [Moloco](mailto:support@molocoads.com) if you need an `AdUnit ID`.
 
 ```
 String adUnitId = "your_ad_unit_id";
@@ -161,8 +161,6 @@ mMolocoView.loadAd();
 mMolocoView.setBannerAdListener(this);
 ```
 
-Now you are ready use **Moloco Android SDK** for Android devices!
+Now you are to ready use **Moloco Android SDK** for Android devices!
 
-Once you complete integration, please work with your Moloco contact to verify receipt of the session and other events from Android server.
-
-If there is any question regarding with Moloco Android SDK integration, please contact [Moloco](mailto:support@molocoads.com).
+If there is any question regarding Moloco Android SDK integration, please contact [Moloco](mailto:support@molocoads.com).
