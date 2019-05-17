@@ -197,6 +197,6 @@ public String getTitle()
 public String getCustomdata()
 ```
 
-Now you are to ready use **Moloco Android SDK** for Android devices!
+Now you are ready to use **Moloco Android SDK** for Android devices!
 
 If there is any question regarding Moloco Android SDK integration, please contact [Moloco](mailto:support@molocoads.com).
