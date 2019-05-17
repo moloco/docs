@@ -116,8 +116,8 @@ final SdkConfiguration sdkConfiguration = new SdkConfiguration(logLevel);
 Moloco.initializeSdk(this, sdkConfiguration);
 ```
 
-### Load an Ad with an ad unit id.
-Initialization requires `AdUnitID` provided by Moloco. Please contact [Moloco](mailto:support@molocoads.com) if you need `AdUnit ID`.
+### Load an Ad with an AdUnit ID.
+Initialization requires `AdUnit ID` provided by Moloco. Please contact [Moloco](mailto:support@molocoads.com) if you need `AdUnit ID`.
 
 ```java
 // SampleNativeListener is an your implementation class of NativeAdListener interface.
