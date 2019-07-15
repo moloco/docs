@@ -39,8 +39,8 @@ repositories {
 
 dependencies {
    compile fileTree(dir: 'libs', include: ['*.jar'])
-   implementation 'com.moloco.sdk:moloco-sdk-base:1.1.1@aar'
-   implementation 'com.moloco.sdk:moloco-sdk-banner:1.1.1@aar'
+   implementation 'com.moloco.sdk:moloco-sdk-base:1.1.2@aar'
+   implementation 'com.moloco.sdk:moloco-sdk-banner:1.1.2@aar'
 
    implementation 'com.squareup.retrofit2:retrofit:2.0.2'
    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
@@ -118,6 +118,10 @@ String adUnitId = "your_ad_unit_id";
 mMolocoView.setAdUnitId(adUnitId);
 mMolocoView.loadAd();
 mMolocoView.setBannerAdListener(this);
+
+// Add some custom keywords on an Ad request parameter.
+mMolocoView.addKeyword("sample1");
+mMolocoView.addKeyword("sample2");
 ```
 
 Now you are ready to use **Moloco Android SDK** for Android devices!
