@@ -39,8 +39,8 @@ repositories {
 
 dependencies {
    compile fileTree(dir: 'libs', include: ['*.jar'])
-   implementation 'com.moloco.sdk:moloco-sdk-base:1.1.1@aar'
-   implementation 'com.moloco.sdk:moloco-sdk-native:1.1.1@aar'
+   implementation 'com.moloco.sdk:moloco-sdk-base:1.1.2@aar'
+   implementation 'com.moloco.sdk:moloco-sdk-native:1.1.2@aar'
 
    implementation 'com.squareup.retrofit2:retrofit:2.0.2'
    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
@@ -124,6 +124,11 @@ Initialization requires `AdUnit ID` provided by Moloco. Please contact [Moloco](
 SampleNativeListener molocoMiddleNativeListener = new SampleNativeListener();
 mMolocoMiddleNative.setAdListener(molocoMiddleNativeListener);
 mMolocoMiddleNative.loadAd();
+
+// Add some custom keywords to an ad request parameter.
+// It is only available adding an only one keyword for each method call.
+mMolocoMiddleNative.addKeyword("sample1");
+mMolocoMiddleNative.addKeyword("sample2");
 ```
 
 ### Show a Native Ad.
