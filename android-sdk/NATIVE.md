@@ -125,7 +125,7 @@ SampleNativeListener molocoMiddleNativeListener = new SampleNativeListener();
 mMolocoMiddleNative.setAdListener(molocoMiddleNativeListener);
 mMolocoMiddleNative.loadAd();
 
-// Add some custom keywords on an Ad request parameter.
+// Add some custom keywords to an ad request parameter.
 // It is only available adding an only one keyword for each method call.
 mMolocoMiddleNative.addKeyword("sample1");
 mMolocoMiddleNative.addKeyword("sample2");

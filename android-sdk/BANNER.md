@@ -119,7 +119,7 @@ mMolocoView.setAdUnitId(adUnitId);
 mMolocoView.loadAd();
 mMolocoView.setBannerAdListener(this);
 
-// Add some custom keywords on an Ad request parameter.
+// Add some custom keywords to an ad request parameter.
 // It is only available adding an only one keyword for each method call.
 mMolocoView.addKeyword("sample1");
 mMolocoView.addKeyword("sample2");
