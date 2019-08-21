@@ -39,8 +39,8 @@ repositories {
 
 dependencies {
    compile fileTree(dir: 'libs', include: ['*.jar'])
-   implementation 'com.moloco.sdk:moloco-sdk-base:1.1.2@aar'
-   implementation 'com.moloco.sdk:moloco-sdk-native:1.1.2@aar'
+   implementation 'com.moloco.sdk:moloco-sdk-base:1.1.3@aar'
+   implementation 'com.moloco.sdk:moloco-sdk-native:1.1.3@aar'
 
    implementation 'com.squareup.retrofit2:retrofit:2.0.2'
    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
