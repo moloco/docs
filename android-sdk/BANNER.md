@@ -156,7 +156,7 @@ mMolocoView.loadAd();
 mMolocoView.setBannerAdListener(this);
 
 // Set UrlHandler if it is implemented and you want to apply it to the view.
-mMolocoMiddleView.setUrlHandler(this);
+mMolocoView.setUrlHandler(this);
 
 // Add some custom keywords to an ad request parameter.
 // It is only available adding an only one keyword for each method call.
