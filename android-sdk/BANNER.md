@@ -39,8 +39,8 @@ repositories {
 
 dependencies {
    compile fileTree(dir: 'libs', include: ['*.jar'])
-   implementation 'com.moloco.sdk:moloco-sdk-base:1.1.2@aar'
-   implementation 'com.moloco.sdk:moloco-sdk-banner:1.1.2@aar'
+   implementation 'com.moloco.sdk:moloco-sdk-base:1.1.3@aar'
+   implementation 'com.moloco.sdk:moloco-sdk-banner:1.1.3@aar'
 
    implementation 'com.squareup.retrofit2:retrofit:2.0.2'
    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
@@ -93,7 +93,7 @@ You should add implementations in the onCreate method.
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     /*
-        Your logic comes here
+        Your logic comes here.
     */
 }
 ```
@@ -113,7 +113,40 @@ final SdkConfiguration sdkConfiguration = new SdkConfiguration(logLevel);
 Moloco.initializeSdk(this, sdkConfiguration);
 ```
 
-###  Load an Ad with an AdUnit ID.
+### Handle URL by your own rules. (Optional)
+We provide a custom URL handler.
+In an Activity (inherited) class, you may implement a UrlHandler interface as below.
+
+```java
+public interface UrlHandler {
+    /*
+     * Performs the custom url handling.
+     *
+     * Returning true causes the current WebView to abort loading the URL since it has been handled already in here.
+     * Returning false causes the WebView to continue loading the URL as usual.
+     *
+     * @return true if the given url was successfully handled; false otherwise.
+     *
+     */
+    public boolean handleResolvedUrl(@NonNull final Context context,
+                                     @NonNull final String url,
+                                     @Nullable Iterable<String> trackingUrls);
+}
+```
+
+You should add implementations in the handleResolvedUrl method.
+
+```java
+protected boolean handleResolvedUrl(final Context context,
+                                 final String url,
+                                 Iterable<String> trackingUrls) {
+    /*
+        Your logic comes here.
+    */
+}
+```
+
+### Load an Ad with an AdUnit ID.
 Initialization requires `AdUnit ID` provided by Moloco. Please contact [Moloco](mailto:support@molocoads.com) if you need `AdUnit ID`.
 
 ```java
@@ -121,6 +154,9 @@ String adUnitId = "your_ad_unit_id";
 mMolocoView.setAdUnitId(adUnitId);
 mMolocoView.loadAd();
 mMolocoView.setBannerAdListener(this);
+
+// Set UrlHandler if it is implemented and you want to apply it to the view.
+mMolocoMiddleView.setUrlHandler(this);
 
 // Add some custom keywords to an ad request parameter.
 // It is only available adding an only one keyword for each method call.
