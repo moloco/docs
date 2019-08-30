@@ -52,3 +52,4 @@ With the modular SDK, you can choose to include specific formats to decrease ove
 
 - [Banner](BANNER.md)
 - [Native](NATIVE.md)
+- [Changelog](CHANGELOG.md)
