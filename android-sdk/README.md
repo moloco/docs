@@ -4,7 +4,7 @@ Moloco Android SDK provides ad serving for mobile applications to facilitate adv
 
 
 ## Prerequisites
-Moloco Android SDK 1.1.3 is compatible with all Android devices running Android **API 16** and above.
+Moloco Android SDK 1.1.4 is compatible with all Android devices running Android **API 16** and above.
 
 ## Installation
 

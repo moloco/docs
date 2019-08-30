@@ -7,7 +7,7 @@
 * Add an interface `UrlHandler` for client.
 
 ## Version 1.1.2 (July 15, 2019)
-* Enabled to set keywords on a MolocoView.
+* Enable to set keywords on a MolocoView.
 
 ## Version 1.1.1 (June 03, 2019)
 * Make JAVA 7 compatible for a whole SDK project.
