@@ -1,5 +1,10 @@
 # Moloco Android SDK - Changelog
 
+## Version 1.1.5 (Sep 09, 2019)
+* Receive `FinalLandingUrl` from Adserver.
+* Add `landingUrl` to the arguments of `handleResolvedUrl` on `UrlHandler`.
+  * You should reimplement `UrlHandler` if you want to apply this version.
+
 ## Version 1.1.4 (August 30, 2019)
 * Fill the device info on the ad request. This enables to send the device info to Moloco ad server.
 

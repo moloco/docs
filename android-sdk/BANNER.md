@@ -39,8 +39,8 @@ repositories {
 
 dependencies {
    compile fileTree(dir: 'libs', include: ['*.jar'])
-   implementation 'com.moloco.sdk:moloco-sdk-base:1.1.4@aar'
-   implementation 'com.moloco.sdk:moloco-sdk-banner:1.1.4@aar'
+   implementation 'com.moloco.sdk:moloco-sdk-base:1.1.5@aar'
+   implementation 'com.moloco.sdk:moloco-sdk-banner:1.1.5@aar'
 
    implementation 'com.squareup.retrofit2:retrofit:2.0.2'
    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
@@ -130,7 +130,8 @@ public interface UrlHandler {
      */
     public boolean handleResolvedUrl(@NonNull final Context context,
                                      @NonNull final String url,
-                                     @Nullable Iterable<String> trackingUrls);
+                                     @Nullable Iterable<String> trackingUrls,
+                                     @Nullable String landingUrl);
 }
 ```
 
@@ -139,7 +140,8 @@ You should add implementations in the handleResolvedUrl method.
 ```java
 protected boolean handleResolvedUrl(final Context context,
                                  final String url,
-                                 Iterable<String> trackingUrls) {
+                                 Iterable<String> trackingUrls,
+                                 String landingUrl) {
     /*
         Your logic comes here.
     */
@@ -152,7 +154,6 @@ Initialization requires `AdUnit ID` provided by Moloco. Please contact [Moloco](
 ```java
 String adUnitId = "your_ad_unit_id";
 mMolocoView.setAdUnitId(adUnitId);
-mMolocoView.loadAd();
 mMolocoView.setBannerAdListener(this);
 
 // Set UrlHandler if it is implemented and you want to apply it to the view.
@@ -162,6 +163,8 @@ mMolocoView.setUrlHandler(this);
 // It is only available adding an only one keyword for each method call.
 mMolocoView.addKeyword("sample1");
 mMolocoView.addKeyword("sample2");
+
+mMolocoView.loadAd();
 ```
 
 Now you are ready to use **Moloco Android SDK** for Android devices!
