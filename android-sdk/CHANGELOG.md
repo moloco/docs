@@ -1,5 +1,9 @@
 # Moloco Android SDK - Changelog
 
+## Version 1.1.6 (Oct 01, 2019)
+* Modified the algorithm of scaling a webview of banner.
+* Fill the os version on the ad request. This enables to send the os version to Moloco ad server.
+
 ## Version 1.1.5 (Sep 09, 2019)
 * Receive `FinalLandingUrl` from Adserver.
 * Add `landingUrl` to the arguments of `handleResolvedUrl` on `UrlHandler`.
