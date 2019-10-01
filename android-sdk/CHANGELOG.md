@@ -2,7 +2,7 @@
 
 ## Version 1.1.6 (Oct 01, 2019)
 * Modify the algorithm of scaling a webview of banner.
-* Fill the os version on the ad request. This enables to send the os version to Moloco ad server.
+* Fill the OS version on the ad request. This enables to send the OS version to Moloco ad server.
 
 ## Version 1.1.5 (Sep 09, 2019)
 * Receive `FinalLandingUrl` from Adserver.
