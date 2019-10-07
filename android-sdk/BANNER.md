@@ -148,6 +148,8 @@ protected boolean handleResolvedUrl(final Context context,
 }
 ```
 
+Using this handler, you may implement your own logic for handling landingUrl, and send a HTTP request to `url` manually in the method. Otherwise, you may implement your own logic overall.
+
 ### Load an Ad with an AdUnit ID.
 Initialization requires `AdUnit ID` provided by Moloco. Please contact [Moloco](mailto:support@molocoads.com) if you need `AdUnit ID`.
 
