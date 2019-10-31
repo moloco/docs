@@ -1,5 +1,8 @@
 # Moloco Android SDK - Changelog
 
+## Version 1.1.7 (Oct 31, 2019)
+* Fix a bug of a click of privacy icon.
+
 ## Version 1.1.6 (Oct 01, 2019)
 * Modify the algorithm of scaling a webview of banner.
 * Fill the OS version on the ad request. This enables to send the OS version to Moloco ad server.
