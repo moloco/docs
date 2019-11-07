@@ -1,5 +1,8 @@
 # Moloco Android SDK - Changelog
 
+## Version 1.1.8 (Nov 7, 2019)
+* Fix a UrlHandler to handle a click of privacy icon with deeplink properly.
+
 ## Version 1.1.7 (Oct 31, 2019)
 * Fix a bug of a click of privacy icon.
 
