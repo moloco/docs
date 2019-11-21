@@ -1,5 +1,8 @@
 # Moloco Android SDK - Changelog
 
+## Version 1.1.9 (Nov 21, 2019)
+* Enable to set location, ip address, and carrier on a MolocoView and a MolocoNative.
+
 ## Version 1.1.8 (Nov 7, 2019)
 * Fix a UrlHandler to handle a click of privacy icon with deeplink properly.
 
