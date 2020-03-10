@@ -167,10 +167,21 @@ mMolocoView.addKeyword("sample2");
 mMolocoView.loadAd();
 ```
 
+### Register parameters. (Default)
+These paramters are constructed by SDK based on the device information.
+* Carrier
+* Device model
+* Device type
+* Country
+* Device OS version
+* App version
+
 ### Register parameters. (Optional)
-* public void setLocation([Location](https://developer.android.com/reference/android/location/package-summary) location)
- * Register a Location object.
- * Make sure to register if it is retrievable from the device.
+User can define some parameters using methods below.
+
+#### public void setLocation([Location](https://developer.android.com/reference/android/location/package-summary) location)
+* Register a Location object.
+* Make sure to register if it is retrievable from the device.
 
 ```java
 // Example
@@ -178,9 +189,9 @@ Location location = getLocationByYourOwnMethod();
 mMolocoView.setLocation(location);
 ```
 
-* public void setIpAddress(String ipAddress)
- * Register an IP address.
- * Make sure to register if it is retrievable from the device.
+#### public void setIpAddress(String ipAddress)
+* Register an IP address.
+* Make sure to register if it is retrievable from the device.
 
 ```java
 // Example
@@ -188,9 +199,9 @@ String ip_address = "127.0.0.1";
 mMolocoView.setIpAddress(ip_address);
 ```
 
-* public void setCarrier(String carrier)
- * Register a device carrier.
- * Make sure to register if it is retrievable from the device.
+#### public void setCarrier(String carrier)
+* Register a device carrier.
+* Make sure to register if it is retrievable from the device.
 
 ```java
 // Example
