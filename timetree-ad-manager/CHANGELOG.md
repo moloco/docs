@@ -1,5 +1,9 @@
 # Timetree Ad Manager - Change note
 
+## Ver 4 (2020/03/18)
+* Enabled to modify a creative after a review rejection.
+* Revise a structure of creative review table.
+
 ## Ver 3 (2020/03/09)
 * Enabled to remove creatives subsequently.
 * Remove `Action Button` in preview since it has been deprecated.
